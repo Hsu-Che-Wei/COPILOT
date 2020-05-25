@@ -90,10 +90,10 @@ legend.position: x y position of the legend on UMI histogram plot (numeric vecto
 
 ## Caution
 
-It is recommended to use the raw spliced and unpliced counts matrices produced by scKB pipeline as the input of copilot, and run copilot in the working directory that contains folder with raw matrices inside. Note that the folder name should be the same as the argument "sample.name". Alternatively, user can directly feed the matrices to copilot in R by fill in the arguments "spliced.mtx", "unspliced.mtx" and "total.mtx". Note that if "total.mtx" is provided, then please let the "spliced.mtx", "unspliced.mtx" remain as NULL, and vise versa.
+It is recommended to use the raw spliced and unpliced counts matrices produced by scKB pipeline as the input of copilot, and run copilot in the working directory that contains folder with raw matrices inside. Note that the folder name should be the same as the argument "sample.name". Alternatively, user can directly feed the matrices to copilot in R by filling in the arguments "spliced.mtx", "unspliced.mtx" and "total.mtx". Note that if "total.mtx" is provided, then please let the "spliced.mtx", "unspliced.mtx" remain as NULL, and vise versa.
 
 COPILOT relies on detecting the distribution of cells enriched in mitochondrial expression (putative dying cells) to identify the initial filtering threshold for low quality cells. Thus, even though user is confident that the library does not contain dying cells, it is still required for user to provide list of mitochondrial gene IDs or a character pattern that is shared among those gene IDs (See argument "mt.pattern"). Alternatively, user can provide genes that represent the signal of noise or low quality cells.
 
 If the algorithm detects no putative dying cells, the initial filtering threshold will then be set as what user feed to argument "min.UMI.high.quality". It is recommended to play around with this argument until the number of high quality cell remains after filtering makes sense.
 
-For users that have scRNA-seq data of Arabidopsis thaliana and Oryza sativa root, please make sure that all necessary files are downloaded from folder named "data".  
+For users that have scRNA-seq data of Arabidopsis thaliana and Oryza sativa root, and wish to perform correlation-based annotation, please make sure that all necessary files are downloaded from folder named "data".  
