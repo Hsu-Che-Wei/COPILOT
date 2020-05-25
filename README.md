@@ -32,7 +32,7 @@ copilot( sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total.mtx = NULL
 
 ## Arguments
 
-sample.name: User defined sample name (character), which should be the same as the name of directory that contains spliced and spliced matrices if you are following scKB pipeline to produce raw counts matrices.
+sample.name: User defined sample name (character), which should be the same as the name of directory that contains spliced and unspliced matrices if you are following scKB pipeline to produce raw counts matrices.
 
 spliced.mtx: Gene by cell matrix of spliced counts, which should have column and row names, Default is NULL.
 
