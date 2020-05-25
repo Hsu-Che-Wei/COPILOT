@@ -18,3 +18,6 @@ devtools::install_github('Hsu-Che-Wei/COPILOT')
 
 Please check out the jupyter notebook named "COPILOT_tutorial.ipynb" or "COPILOT_tutorial.html" for convenience.
 
+## COPILOT summary file
+
+Please check an example of COPILOT summary file in the folder named "COPILOT_summary_file".
