@@ -3,7 +3,7 @@ Type: Package
 Title: Cell preprOcessing PIpeline kaLlistO busTools
 Version: 0.1.0
 Author: Che-Wei Hsu (ORCID: 0000-0003-3709-9748)
-Maintainer: Che-Wei Hsu <raphael830102@gamil.com>
+Maintainer: Che-Wei Hsu <raphael830102@gmail.com>
 Description: Single cell RNA-seq preprocessing tool for gene-by-cell matrices of UMI counts
     COPILOT does quality filtering on cells and genes on the raw gene-by-cell matrix. It is recommanded to use kallisto and bustools to map the raw sequence to genome and get the raw gene-by-cell matrices. 
 License: MIT LICENSE
