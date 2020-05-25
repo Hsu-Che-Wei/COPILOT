@@ -13,7 +13,7 @@ copilot(
   species.name = "Not Provided",
   transcriptome.name = "Not Provided",
   sample.stats = NULL,
-  mt.pattern = NULL,
+  mt.pattern,
   mt.threshold = 5,
   cp.pattern = NULL,
   top.percent = 1,
@@ -51,7 +51,7 @@ copilot(
 
 \item{sample.stats}{Meta data of the sample in data.frame format. Default is NULL.}
 
-\item{mt.pattern}{Pattern of mitochondrial gene names/ids (character; e.g. "ATMG") or list of mitochondrial genes (character vector). Default is NULL, however this argument is required to run copilot.}
+\item{mt.pattern}{Pattern of mitochondrial gene names/ids (character; e.g. "ATMG") or list of mitochondrial genes (character vector). This argument is required to run copilot.}
 
 \item{mt.threshold}{Threshold of mitochondrial expression percentage. Cell would be treated as dying cell if it has mitochodrial expression percentage higherthan this threshold (numeric). Default is 5.}
 
