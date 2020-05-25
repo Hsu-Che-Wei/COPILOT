@@ -7,7 +7,14 @@ R (>= 3.6.1)
 
 R packages: Seurat, Matrix, rjson, gridExtra, ggplot2, DoubletFinder, DropletUtils, R2HTML
 
-umap-learn #installed by "pip install umap-learn"
+Python modules: umap-learn, leidenalg (optional)
 
-leidenalg #optional, required if Leiden clustering is chosen
+## Installation (in R/RStudio)
+   ```
+devtools::install_github('Hsu-Che-Wei/COPILOT')
+   ```
+
+## Tutorial
+
+Please check out the jupyter notebook named "COPILOT_tutorial.ipynb" or "COPILOT_tutorial.html" for convenience.
 
