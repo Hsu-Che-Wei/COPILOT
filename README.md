@@ -5,7 +5,7 @@ Single cell RNA-seq preprocessing tool for gene-by-cell matrices of UMI counts. 
 
 R (>= 3.6.1)
 
-R packages: Seurat, Matrix, rjson, gridExtra, ggplot2, DoubletFinder, DropletUtils, R2HTML
+R packages: Seurat (>= 3.1.4), Matrix, rjson, gridExtra, ggplot2, DoubletFinder, DropletUtils, R2HTML
 
 Python modules: umap-learn, leidenalg (optional)
 
