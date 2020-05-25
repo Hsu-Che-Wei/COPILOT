@@ -3,9 +3,14 @@
 #' @param save Output directory for the plot
 #' @param lengend.position x y position of the legend, e.g. c(0.8, 0.8)
 #' @import ggplot2
+#' @import scales
 
 
 UMI_hist_plot <- function(lnc_gg,save,legend.position){
+
+  library(ggplot2)
+  library(scales)
+
   png(save, width = 7, height = 5, units = 'in', res=300)
   print({
     ggplot(lnc_gg, aes(lnc, fill = select)) +

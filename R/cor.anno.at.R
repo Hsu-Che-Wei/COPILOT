@@ -10,6 +10,8 @@
 
 cor.anno.at <- function (seu, dir_to_bulk, unwanted.genes, clustering_alg, res, mt.pattern, cp.pattern) {
 
+  library(Seurat)
+
   load(file=dir_to_bulk)
 
   #### Bulk RNA-seq ####

@@ -9,3 +9,6 @@ Description: Single cell RNA-seq preprocessing tool for gene-by-cell matrices of
 License: MIT LICENSE
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.1.0
+Depends: R (>= 3.6.1)
+Imports: Seurat, Matrix, scales, rjson, gridExtra, ggplot2, DoubletFinder, DropletUtils, R2HTML

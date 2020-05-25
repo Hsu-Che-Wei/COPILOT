@@ -8,6 +8,9 @@
 #' @import R2HTML
 
 print_HTML <- function(parameters, cell_stats, seq_stats, sample_stats, dir, sample.name){
+
+  library(R2HTML)
+
   system(paste0('base64 ', dir, '/UMI_hist_plot.png > ', dir, '/UMI_hist.txt'))
   system(paste0('base64 ', dir, '/Gene_hist_plot.png > ', dir, '/Gene_hist.txt'))
   system(paste0('base64 ', dir, '/bc_rank_plot.png > ', dir, '/barcode_rank.txt'))

@@ -2,8 +2,13 @@
 #' @param lnc_gg Datafrome that contains log (number of genes), rank and the whether the cell is selected for plotting
 #' @param save Output directory for the plot
 #' @import ggplot2
+#' @import scales
 
 Gene_hist_plot <- function(lng_gg,save){
+
+  library(ggplot2)
+  library(scales)
+
   png(save, width = 7, height = 5, units = 'in', res=300)
   print({
     ggplot(lng_gg, aes(lng, fill = select)) +

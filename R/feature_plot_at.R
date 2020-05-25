@@ -6,9 +6,14 @@
 #' @param save Output directory for the feature plot
 #' @import Seurat
 #' @import ggplot2
+#' @import scales
 #' @import gridExtra
 
 feature_plot_at <- function(seu,res,doublet.rate,dir_to_color_scheme,save){
+  library(Seurat)
+  library(ggplot2)
+  library(scales)
+  library(gridExtra)
   load(dir_to_color_scheme)
   color <- celltypepalette[sort(match(unique(seu$celltype.ID.P),celltypeorder))];
   p1 <- DimPlot(seu, reduction = "umap", group.by = "celltype.ID.P", cols = color)+ggtitle("RNA Seq Annotation")+theme(plot.margin = unit(c(2.4,0,0.8,4), "cm"),plot.title = element_text(hjust = 0,vjust=2,size= 22, face="plain"));

@@ -29,6 +29,7 @@
 #' @export
 #' @import Seurat
 #' @import Matrix
+#' @import scales
 #' @import rjson
 #' @import DoubletFinder
 #' @import DropletUtils
@@ -41,6 +42,15 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
   if (missing(mt.pattern)) {
     stop('Error! Necessary argument "mt.pattern" is missing.')
   }
+
+  library(Seurat)
+  library(Matrix)
+  library(rjson)
+  library(DoubletFinder)
+  library(DropletUtils)
+  library(ggplot2)
+  library(scales)
+
   if(is.null(spliced.mtx) && is.null(unspliced.mtx) && is.null(total.mtx)){
     # load raw mtx
     spliced <- readMM(paste0("./",sample.name,"/spliced.mtx"))
