@@ -16,15 +16,19 @@ devtools::install_github('Hsu-Che-Wei/COPILOT')
 
 ## Tutorial
 
-Please check out the jupyter notebook named "COPILOT_tutorial.ipynb" or "COPILOT_tutorial.html" for convenience.
+Please check out the jupyter notebook named "COPILOT_tutorial.ipynb" or "COPILOT_tutorial.html".
+
+It is easier to check out the files by cloning the whole repository to local directory. 
 
 ## COPILOT summary file
 
-Please check an example of COPILOT summary file in the folder named "COPILOT_summary_file".
+Please check out an example of COPILOT summary file in the folder named "COPILOT_summary_file".
+
+It is easier to check out the files by cloning the whole repository to local directory. 
 
 ## Usage
 
-copilot( sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total.mtx = NULL, filtered.mtx.output.dir = NULL, species.name = "Not Provided", transcriptome.name = "Not Provided", sample.stats = NULL, mt.pattern = NULL, mt.threshold = 5, cp.pattern = NULL, top.percent = 1, filtering.ratio = 1, estimate.doublet.rate = TRUE, doublet.rate = NULL, remove.doublet = TRUE, do.seurat = TRUE, do.annotation = FALSE, unwanted.genes = NULL, HVG = FALSE, HVGN = 200, dir_to_bulk = NULL, clustering_alg = 3, res = 0.5, min.UMI.low.quality = 100, min.UMI.high.quality = 300, legend.position = c(0.8, 0.8) )
+copilot( sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total.mtx = NULL, copilot( sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total.mtx = NULL, filtered.mtx.output.dir = NULL, species.name = "Not Provided", transcriptome.name = "Not Provided", sample.stats = NULL, mt.pattern = NULL, mt.threshold = 5, cp.pattern = NULL, top.percent = 1, filtering.ratio = 1, estimate.doublet.rate = TRUE, doublet.rate = NULL, remove.doublet = TRUE, do.seurat = TRUE, do.annotation = FALSE, unwanted.genes = NULL, HVG = FALSE, HVGN = 200, dir_to_bulk = NULL, dir_to_color_scheme = NULL, clustering_alg = 3, res = 0.5, min.UMI.low.quality = 100, min.UMI.high.quality = 300, legend.position = c(0.8, 0.8) )
 
 ## Arguments
 
@@ -72,6 +76,8 @@ HVGN: Number of highly variable genes selected (numeric). Defalut is 200.
 
 dir_to_bulk: Directory to reference expression profile for annotation. Default is NULL.
 
+dir_to_color_scheme: Directory to color scheme file for annotation. Default is NULL.
+
 clustering_alg: Algorithm for clustering (1 = original Louvain algorithm; 2 = Louvain algorithm with multilevel refinement; 3 = SLM algorithm; 4 = Leiden algorithm, which requires the leidenalg python; numeric). Default is 3.
 
 res: Resolution used for clustering (numeric). Default is 0.5.
@@ -89,3 +95,5 @@ It is recommended to use the raw spliced and unpliced counts matrices produced b
 COPILOT relies on detecting the distribution of cells enriched in mitochondrial expression (putative dying cells) to identify the initial filtering threshold for low quality cells. Thus, even though user is confident that the library does not contain dying cells, it is still required for user to provide list of mitochondrial gene IDs or a character pattern that is shared among those gene IDs (See argument "mt.pattern"). Alternatively, user can provide genes that represent the signal of noise or low quality cells.
 
 If the algorithm detects no putative dying cells, the initial filtering threshold will then be set as what user feed to argument "min.UMI.high.quality". It is recommended to play around with this argument until the number of high quality cell remains after filtering makes sense.
+
+For users that have scRNA-seq data of Arabidopsis thaliana and Oryza sativa root, please make sure that all necessary files are downloaded from folder named "data".  

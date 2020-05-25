@@ -13320,8 +13320,8 @@ loaded via a namespace (and not attached):
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Run copilot, please notice that do.annotation only supports root of Arabidopsis thaliana and Oryza sativa </span>
 <span class="nf">copilot</span><span class="p">(</span><span class="n">sample.name</span> <span class="o">=</span> <span class="s">&quot;col0&quot;</span><span class="p">,</span> <span class="n">species.name</span> <span class="o">=</span> <span class="s">&quot;Arabidopsis thaliana&quot;</span><span class="p">,</span> <span class="n">transcriptome.name</span> <span class="o">=</span> <span class="s">&quot;TAIR10&quot;</span><span class="p">,</span> <span class="n">sample.stats</span> <span class="o">=</span> <span class="n">sample.stats</span><span class="p">,</span> <span class="n">mt.pattern</span> <span class="o">=</span> <span class="s">&quot;ATMG&quot;</span><span class="p">,</span> 
-        <span class="n">mt.threshold</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">cp.pattern</span> <span class="o">=</span> <span class="s">&quot;ATCG&quot;</span><span class="p">,</span> <span class="n">do.seurat</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">do.annotation</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">unwanted.genes</span> <span class="o">=</span> <span class="n">pp.genes</span><span class="p">,</span> <span class="n">dir_to_bulk</span> <span class="o">=</span> <span class="s">&quot;../../cellranger/Root_bulk_arabidopsis_curated.RD&quot;</span><span class="p">,</span> 
-        <span class="n">min.UMI.low.quality</span> <span class="o">=</span> <span class="m">100</span><span class="p">,</span> <span class="n">min.UMI.high.quality</span> <span class="o">=</span> <span class="m">300</span><span class="p">)</span>
+        <span class="n">mt.threshold</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">cp.pattern</span> <span class="o">=</span> <span class="s">&quot;ATCG&quot;</span><span class="p">,</span> <span class="n">do.seurat</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">do.annotation</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">unwanted.genes</span> <span class="o">=</span> <span class="n">pp.genes</span><span class="p">,</span> <span class="n">dir_to_color_scheme</span> <span class="o">=</span> <span class="s">&quot;./color_scheme_at.RData&quot;</span><span class="p">,</span> 
+        <span class="n">dir_to_bulk</span> <span class="o">=</span> <span class="s">&quot;../../cellranger/Root_bulk_arabidopsis_curated.RD&quot;</span><span class="p">,</span> <span class="n">min.UMI.low.quality</span> <span class="o">=</span> <span class="m">100</span><span class="p">,</span> <span class="n">min.UMI.high.quality</span> <span class="o">=</span> <span class="m">300</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13658,6 +13658,7 @@ Please use `as_label()` or `as_name()` instead.
   HVG = FALSE,
   HVGN = 200,
   dir_to_bulk = NULL,
+  dir_to_color_scheme = NULL,
   clustering_alg = 3,
   res = 0.5,
   min.UMI.low.quality = 100,
@@ -13708,6 +13709,8 @@ Whether or not to select highly variable genes (boolean). Default is FALSE.</p>
 Number of highly variable genes selected (numeric). Defalut is 200.</p>
 <p>dir_to_bulk:
 Directory to reference expression profile for annotation. Default is NULL.</p>
+<p>dir_to_color_scheme:
+Directory to color scheme file for annotation. Default is NULL.</p>
 <p>clustering_alg:
 Algorithm for clustering (1 = original Louvain algorithm; 2 = Louvain algorithm with multilevel refinement; 3 = SLM algorithm; 4 = Leiden algorithm, which requires the leidenalg python; numeric). Default is 3.</p>
 <p>res:
@@ -13721,6 +13724,19 @@ x y position of the legend on UMI histogram plot (numeric vector of length 2). D
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>

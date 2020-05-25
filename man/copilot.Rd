@@ -27,6 +27,7 @@ copilot(
   HVG = FALSE,
   HVGN = 200,
   dir_to_bulk = NULL,
+  dir_to_color_scheme = NULL,
   clustering_alg = 3,
   res = 0.5,
   min.UMI.low.quality = 100,
@@ -78,6 +79,8 @@ copilot(
 \item{HVGN}{Number of highly variable genes selected (numeric). Defalut is 200.}
 
 \item{dir_to_bulk}{Directory to reference expression profile for annotation. Default is NULL.}
+
+\item{dir_to_color_scheme}{Directory to color scheme file for annotation. Default is NULL.}
 
 \item{clustering_alg}{Algorithm for clustering (1 = original Louvain algorithm; 2 = Louvain algorithm with multilevel refinement; 3 = SLM algorithm; 4 = Leiden algorithm, which requires the leidenalg python; numeric). Default is 3.}
 

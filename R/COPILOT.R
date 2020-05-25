@@ -21,6 +21,7 @@
 #' @param HVG Whether or not to select highly variable genes (boolean). Default is FALSE.
 #' @param HVGN Number of highly variable genes selected (numeric). Defalut is 200.
 #' @param dir_to_bulk Directory to reference expression profile for annotation. Default is NULL.
+#' @param dir_to_color_scheme Directory to color scheme file for annotation. Default is NULL.
 #' @param clustering_alg Algorithm for clustering (1 = original Louvain algorithm; 2 = Louvain algorithm with multilevel refinement; 3 = SLM algorithm; 4 = Leiden algorithm, which requires the leidenalg python; numeric). Default is 3.
 #' @param res Resolution used for clustering (numeric). Default is 0.5.
 #' @param min.UMI.low.quality Minimum UMIs for a barcode to be considered as cell (numeric). Default is 100.
@@ -413,13 +414,13 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
       if (species.name=="Arabidopsis thaliana"){
         seu <- cor.anno.at(seu = seu, dir_to_bulk = dir_to_bulk, unwanted.genes = unwanted.genes, clustering_alg = clustering_alg, res = res, mt.pattern = mt.pattern, cp.pattern = cp.pattern)
         #Feature Plot
-        feature_plot_at(seu = seu, res = res, doublet.rate = doublet.rate, dir_to_color_scheme = "./color_scheme_at.RData",save = paste0("./",sample.name,"/feature_plot.png"))
+        feature_plot_at(seu = seu, res = res, doublet.rate = doublet.rate, dir_to_color_scheme = dir_to_color_scheme, save = paste0("./",sample.name,"/feature_plot.png"))
         #Output HTML
         print_HTML(parameters = parameters, cell_stats = cell_stats, seq_stats = seq_stats, sample_stats = sample.stats, dir = paste0("./",sample.name), sample.name = sample.name)
       } else if (species.name=="Oryza sativa"){
         seu <- cor.anno.os(seu = seu, dir_to_bulk = dir_to_bulk, unwanted.genes = unwanted.genes, clustering_alg = clustering_alg, res = res, mt.pattern = mt.pattern, cp.pattern = cp.pattern)
         #Feature Plot
-        feature_plot_os(seu = seu, res = res, doublet.rate = doublet.rate, dir_to_color_scheme = "./color_scheme_os.RData",save = paste0("./",sample.name,"/feature_plot.png"))
+        feature_plot_os(seu = seu, res = res, doublet.rate = doublet.rate, dir_to_color_scheme = dir_to_color_scheme, save = paste0("./",sample.name,"/feature_plot.png"))
         #Output HTML
         print_HTML(parameters = parameters, cell_stats = cell_stats, seq_stats = seq_stats, sample_stats = sample.stats, dir = paste0("./",sample.name), sample.name = sample.name)
       }
