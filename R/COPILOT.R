@@ -1,5 +1,5 @@
 #' copilot
-#' @param sample.name User defined sample name (character), which should be the same as the name of directory that contains spliced and spliced matrices if you are following scKB pipeline to produce raw counts matrices.
+#' @param sample.name User defined sample name (character), which should be the same as the name of directory that contains spliced and unspliced matrices if you are following scKB pipeline to produce raw counts matrices.
 #' @param spliced.mtx Gene by cell matrix of spliced counts, which should have column and row names, Default is NULL.
 #' @param unspliced.mtx Gene by cell matrix of unspliced counts, which should have column and row names. Default is NULL.
 #' @param total.mtx Gene by cell matrix of total counts, which should have column and row names. Default is NULL.
@@ -8,7 +8,7 @@
 #' @param transcriptome.name Name of transcriptome annotation file. (e.g. TAIR10 for Arabidopsis). Default is "Not Provided".
 #' @param sample.stats Meta data of the sample in data.frame format. Default is NULL.
 #' @param mt.pattern Pattern of mitochondrial gene names/ids (character; e.g. "ATMG") or list of mitochondrial genes (character vector). This argument is required to run copilot.
-#' @param mt.threshold Threshold of mitochondrial expression percentage. Cell would be treated as dying cell if it has mitochodrial expression percentage higherthan this threshold (numeric). Default is 5.
+#' @param mt.threshold Threshold of mitochondrial expression percentage. Cell would be treated as dying cell if it has mitochodrial expression percentage higher than this threshold (numeric). Default is 5.
 #' @param cp.pattern Pattern of chloroplast gene names/ids (character; e.g. "ATCG") or list of chloroplast genes (character vector). Default is NULL.
 #' @param top.percent Percentage of cells that contain high numer of UMIs filtered (numeric). Default is 1.
 #' @param filtering.ratio Metric that controls the stringency of cell filtering (lenient: 1; strict:0; moderate: 0 < filtering.ratio < 1; numeric). Default is 1.

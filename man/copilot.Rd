@@ -36,7 +36,7 @@ copilot(
 )
 }
 \arguments{
-\item{sample.name}{User defined sample name (character), which should be the same as the name of directory that contains spliced and spliced matrices if you are following scKB pipeline to produce raw counts matrices.}
+\item{sample.name}{User defined sample name (character), which should be the same as the name of directory that contains spliced and unspliced matrices if you are following scKB pipeline to produce raw counts matrices.}
 
 \item{spliced.mtx}{Gene by cell matrix of spliced counts, which should have column and row names, Default is NULL.}
 
@@ -54,7 +54,7 @@ copilot(
 
 \item{mt.pattern}{Pattern of mitochondrial gene names/ids (character; e.g. "ATMG") or list of mitochondrial genes (character vector). This argument is required to run copilot.}
 
-\item{mt.threshold}{Threshold of mitochondrial expression percentage. Cell would be treated as dying cell if it has mitochodrial expression percentage higherthan this threshold (numeric). Default is 5.}
+\item{mt.threshold}{Threshold of mitochondrial expression percentage. Cell would be treated as dying cell if it has mitochodrial expression percentage higher than this threshold (numeric). Default is 5.}
 
 \item{cp.pattern}{Pattern of chloroplast gene names/ids (character; e.g. "ATCG") or list of chloroplast genes (character vector). Default is NULL.}
 
