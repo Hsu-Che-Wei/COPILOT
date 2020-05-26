@@ -28,7 +28,7 @@ It is easier to check out the files by cloning the whole repository to local dir
 
 ## Usage
 
-copilot( sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total.mtx = NULL, filtered.mtx.output.dir = NULL, species.name = "Not Provided", transcriptome.name = "Not Provided", sample.stats = NULL, mt.pattern = NULL, mt.threshold = 5, cp.pattern = NULL, top.percent = 1, filtering.ratio = 1, estimate.doublet.rate = TRUE, doublet.rate = NULL, remove.doublet = TRUE, do.seurat = TRUE, do.annotation = FALSE, unwanted.genes = NULL, HVG = FALSE, HVGN = 200, dir_to_bulk = NULL, dir_to_color_scheme = NULL, clustering_alg = 3, res = 0.5, min.UMI.low.quality = 100, min.UMI.high.quality = 300, legend.position = c(0.8, 0.8) )
+copilot( sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total.mtx = NULL, filtered.mtx.output.dir = NULL, species.name = "Not Provided", transcriptome.name = "Not Provided", sample.stats = NULL, mt.pattern, mt.threshold = 5, cp.pattern = NULL, top.percent = 1, filtering.ratio = 1, estimate.doublet.rate = TRUE, doublet.rate = NULL, remove.doublet = TRUE, do.seurat = TRUE, do.annotation = FALSE, unwanted.genes = NULL, HVG = FALSE, HVGN = 200, dir_to_bulk = NULL, dir_to_color_scheme = NULL, clustering_alg = 3, res = 0.5, min.UMI.low.quality = 100, min.UMI.high.quality = 300, legend.position = c(0.8, 0.8) )
 
 ## Arguments
 
@@ -48,9 +48,9 @@ transcriptome.name: Name of transcriptome annotation file. (e.g. TAIR10 for Arab
 
 sample.stats: Meta data of the sample in data.frame format. Default is NULL.
 
-mt.pattern: Pattern of mitochondrial gene names/ids (character; e.g. "ATMG") or list of mitochondrial genes (character vector). Default is NULL, however this argument is required to run copilot.
+mt.pattern: Pattern of mitochondrial gene names/ids (character; e.g. "ATMG") or list of mitochondrial genes (character vector). This argument is required to run copilot.
 
-mt.threshold: Threshold of mitochondrial expression percentage. Cell would be treated as dying cell if it has mitochodrial expression percentage higherthan this threshold (numeric). Default is 5.
+mt.threshold: Threshold of mitochondrial expression percentage. Cell would be treated as dying cell if it has mitochodrial expression percentage higher than this threshold (numeric). Default is 5.
 
 cp.pattern: Pattern of chloroplast gene names/ids (character; e.g. "ATCG") or list of chloroplast genes (character vector). Default is NULL.
 
