@@ -4,9 +4,11 @@ Single cell RNA-seq preprocessing tool for gene-by-cell matrices of UMI counts. 
 
 ## Advantages over CellRanger
 
-1. If user is considering calculating RNA velocity or inferring trajectory based on splicing dynamics in downstream analysis, then COPILOT along with scKB can help you with that since together they produce spliced and unspliced quality-filtered count matrices. 
+1. Since scKB and COPILOT incorporates kallisto, which is a read aligner using peudo-alignment, they are about ~ 30 times faster in processing time. 
 
-2. If user want to use specific sets of genes that represent the signal of noise or low quality cells for cell-filtering, COPILOT offers such function.
+2. If user is considering calculating RNA velocity or inferring trajectory based on splicing dynamics in downstream analysis, then COPILOT along with scKB can help you with that since together they produce spliced and unspliced quality-filtered count matrices. 
+
+3. If user want to use specific sets of genes that represent the signal of noise or low quality cells for cell-filtering, COPILOT offers such function.
 
 ## Dependencies
 
