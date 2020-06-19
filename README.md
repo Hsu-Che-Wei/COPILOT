@@ -103,4 +103,4 @@ COPILOT relies on detecting the distribution of cells enriched in mitochondrial 
 
 If the algorithm detects no putative dying cells, the initial filtering threshold will then be set as what user feed to argument "min.UMI.high.quality". It is recommended to play around with this argument until the number of high quality cell remains after filtering makes sense.
 
-For users that have scRNA-seq data of Arabidopsis thaliana and Oryza sativa root, and wish to perform correlation-based annotation, please make sure that all necessary files are downloaded from folder named "data".  
+For users that have scRNA-seq data of Arabidopsis thaliana root, and wish to perform correlation-based annotation, please make sure that all necessary files are downloaded from folder named "supp_data".  
