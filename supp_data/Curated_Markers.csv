@@ -1,0 +1,45 @@
+Locus,Gene,Celltype,Source
+AT4G00490,BAM2,Columella,Ryu et al. 2019
+AT1G62510,AT1G62510,Cortex,Ryu et al. 2019
+AT5G07990,CYP75B1,Cortex,Ryu et al. 2019
+AT5G55250,IAMT1,Cortex,Ryu et al. 2019
+AT1G61590,AT1G61590,Endodermis,Ryu et al. 2019
+AT4G02090,AT4G02090,Endodermis,Ryu et al. 2019
+AT3G11550,CASP2,Endodermis,Ryu et al. 2019
+AT2G27370,CASP3,Endodermis,Ryu et al. 2019
+AT5G06200,CASP4,Endodermis,Ryu et al. 2019
+AT5G57620,MYB36,Endodermis,Ryu et al. 2019
+AT5G42180,PER64,Endodermis,Ryu et al. 2019
+AT1G33090,AT1G33090,Trichoblast,Ryu et al. 2019
+AT3G09330,AT3G09330,Trichoblast,Ryu et al. 2019
+AT5G49270,COBL9,Trichoblast,Ryu et al. 2019
+AT1G48930,GH9C1,Trichoblast,Ryu et al. 2019
+AT1G69240,MES15,Trichoblast,Ryu et al. 2019
+AT1G45545,WEL2,Trichoblast,Ryu et al. 2019
+AT4G37160,sks15,Lateral Root Cap,Ryu et al. 2019
+AT1G79840,GL2,Atrichoblast,Ryu et al. 2019
+AT2G37260,WRKY44,Atrichoblast,Ryu et al. 2019
+AT1G65310,XTH17,Atrichoblast,Ryu et al. 2019
+AT1G79430,APL,Phloem,Ryu et al. 2019
+AT5G62940,DOF5.6,Phloem,Ryu et al. 2019
+AT2G37090,IRX9,Xylem,Ryu et al. 2019
+AT5G12870,MYB46,Xylem,Ryu et al. 2019
+AT3G09070,OPS,Procambium,Nagawa et al. 2006
+AT5G43810,AGO10,Procambium,Nagawa et al. 2006
+AT5G26930,GATA23,Pericycle,Beekman et al. 2014
+AT3G26120,TEL1,Quiescent Center,Denyer et al. 2019
+AT3G43270,PME32,Phloem,Denyer et al. 2019
+AT1G68470,AT1G68470,Atrichoblast,escoring
+AT1G55440,AT1G55440,Trichoblast,escoring
+AT1G11330,RDA2,Pericycle,escoring
+AT1G26790,CDF6,Phloem,escoring
+AT3G05180,AT3G05180,Xylem,escoring
+AT3G55930,AT3G55930,Lateral Root Cap,escoring
+AT5G36880,ACS,Lateral Root Cap,escoring
+AT1G23210,GH9B6,Columella,escoring
+AT5G57640,AT5G57640,Columella,escoring
+AT3G60650,AT3G60650,Columella,escoring
+AT1G13620,RGF2,Columella,escoring
+AT1G17400,DRO3,Columella,escoring
+AT1G55200,AT1G55200,Quiescent Center,escoring
+AT5G45210,AT5G45210,Endodermis,Clark et al. 2019
