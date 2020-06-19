@@ -1,6 +1,12 @@
 # COPILOT (Cell preprOcessing PIpeline kaLlistO busTools) 
 
-Single cell RNA-seq preprocessing tool for gene-by-cell matrices of UMI counts. It is recommended to use the raw spliced and unpliced counts matrices produced by scKB pipeline as the input of copilot.
+Single cell RNA-seq preprocessing tool for gene-by-cell matrices of UMI counts. The uitily and summary file offered by this tool is directly comparable to CellRanger, the tool developed by 10X Genomics. It is recommended to use the raw spliced and unpliced counts matrices produced by scKB pipeline as the input of copilot.
+
+## Advantage over CellRanger
+
+1. If user is considering calculating RNA velocity or inferring trajectory based on splicing dynamics in downstream analysis, then COPILOT along with scKB can help you with that since together they produce spliced and unspliced QC-filtered count matrices. 
+
+2. If user want to use specific sets of genes that represent the signal of noise or low quality cells for cell-filtering, COPILOT offers such utility.
 
 ## Dependencies
 
