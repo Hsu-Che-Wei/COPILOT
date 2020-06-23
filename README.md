@@ -31,6 +31,8 @@ It is easier to check out the files by cloning the whole repository to local dir
 
 ## COPILOT summary file
 
+![COPILOT_Summary](/images/COPILOT_Summary.png)
+
 Please check out an example of COPILOT summary file in the folder named "COPILOT_summary_file".
 
 It is easier to check out the files by cloning the whole repository to local directory. 
