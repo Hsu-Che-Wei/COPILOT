@@ -1,0 +1,48 @@
+Marker,Cell_Type,Marker_Reference,Marker_DOI
+AGL42,Quiescent_Center,Nawy et al 2005,10.1105/tpc.105.031724
+APL,Phloem,Bonke et al 2003,10.1038/nature02100
+COBL9,Trichoblast,Brady et al 2007b,10.1104/pp.106.087262
+CORTEX,Mature_Cortex,Lee et al. 2006,10.1073/pnas.0510607103
+E1001,Endodermis_and_Cortex,Gifford et al 2008,10.1073/pnas.0709559105
+E30,Endodermis,Lee et al. 2006,10.1073/pnas.0510607103
+E3754,Xylem_Pole_Pericycle,Gifford et al 2008,10.1073/pnas.0709559105
+E470,Endodermis_and_Pericycle,Gifford et al 2008,10.1073/pnas.0709559105
+E4722,Lateral_Root_Cap,Gifford et al 2008,10.1073/pnas.0709559105
+GL2,Atrichoblast,"Lin and Schiefelbein, 2002",https://dev.biologists.org/content/128/19/3697
+J0121,Xylem_Pole_Pericycle,Casimiro et al 2001,10.1105/tpc.13.4.843
+J0571,Ground_Tissue,Mylona et al 2002,https://dev.biologists.org/content/129/18/4327.abstract
+J2501,Stele,Wang et al 2005,10.1105/tpc.105.033076
+J2661,Pericycle,Brady et al 2007,10.1104/pp.106.087262
+J3411,Lateral_Root_Cap,Webb et al 2002,https://dev.biologists.org/content/129/1/123
+S18,Maturing_Xylem,Lee et al. 2006,10.1073/pnas.0510607103
+PET111,Columella,Nawy et al 2005,10.1105/tpc.105.031724
+RM1000,Lateral_Root_Primordia,Brady et al 2007,10.1126/science.1146265
+S17,Phloem_Pole_Pericycle,Lee et al. 2006,10.1073/pnas.0510607103
+S32,Phloem,Lee et al. 2006,10.1073/pnas.0510607103
+S4,Meristematic_Xylem,Lee et al. 2006,10.1073/pnas.0510607103
+SCR,Endodermis,Helariutta et al 2000,10.1016/S0092-8674(00)80865-X
+SUC2,Phloem_Companion_Cells,Imlau et al 1999; Stadler et al 2005,10.1105/tpc.11.3.309; 10.1111/j.1365-313X.2004.02298.x
+WER,Epidermis_and_Lateral_Root_Cap,Lee et al 1999,10.1016/S0092-8674(00)81536-6
+WOL,Stele,Bonke et al 2003,10.1038/nature02100
+WOX5,Quiescent_Center,Sebastian et al 2015,10.1371/journal.pgen.1004973
+CO2,Developing_Cortex,Heidstra et al 2004,10.1101/gad.305504
+CYD6,Ground_Cell_Stem,Clark et al. 2019,10.1038/s41467-019-13132-2
+CVP2,Protophloem_Stem,Clark et al. 2019,10.1038/s41467-019-13132-2
+FEZ,Epidermis_LRC_Stem,Clark et al. 2019,10.1038/s41467-019-13132-2
+J2341,Columella_Stem,Clark et al. 2019,10.1038/s41467-019-13132-2
+TMO5,Xylem_Stem,Clark et al. 2019,10.1038/s41467-019-13132-2
+AT1G09750,Cortex,Lee et al. 2006,10.1073/pnas.0510607103
+ATHB8,Procambium,Yadev et al. 2014,10.1242/dev.106104
+ATML1,L1_Ubiquitous,Yadev et al. 2014,10.1242/dev.106104
+CLV3,CentralZone_RibMeristem,Yadev et al. 2009,10.1073/pnas.0900843106
+HDG4,L2_Layer,Yadev et al. 2014,10.1242/dev.106104
+HMG,L1_Meristem,Yadev et al. 2014,10.1242/dev.106104
+KANADI1,Peripheral_Zone,Yadev et al. 2014,10.1242/dev.106104
+LAS,Organ_Boundaries,Yadev et al. 2014,10.1242/dev.106104
+WUS,L3_Meristem,Yadev et al. 2014,10.1242/dev.106104
+FIL1,Organ_Primordia,Yadev et al. 2009,10.1073/pnas.0900843106
+Meristematic,Meristematic,NA,NA
+Elongation,Elongation,NA,NA
+Maturation,Maturation,NA,NA
+Whole_Root,Whole_Root,NA,NA
+Protoplast,Protoplast,NA,NA

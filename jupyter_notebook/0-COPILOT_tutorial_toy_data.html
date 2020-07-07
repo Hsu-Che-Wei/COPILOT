@@ -13084,7 +13084,11 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-toy-data-was-preprocessed-to-generate-gene-by-cell-matrices-using-scKB,-for-the-detail-of-scKB-and-access-to-toy-data-and-supplementary-data,-please-visit-https://github.com/Hsu-Che-Wei/scKB-.-Note-that-the-toy-data-only-contains-1-million-reads,-due-to-shallow-sequencing-depth,-the-COPILOT-parameters-min.UMI.low.quality-and-min.UMI.high.quality-should-be-adjusted-accordingly">The toy data was preprocessed to generate gene-by-cell matrices using scKB, for the detail of scKB and access to toy data and supplementary data, please visit <a href="https://github.com/Hsu-Che-Wei/scKB">https://github.com/Hsu-Che-Wei/scKB</a> . Note that the toy data only contains 1 million reads, due to shallow sequencing depth, the COPILOT parameters min.UMI.low.quality and min.UMI.high.quality should be adjusted accordingly<a class="anchor-link" href="#The-toy-data-was-preprocessed-to-generate-gene-by-cell-matrices-using-scKB,-for-the-detail-of-scKB-and-access-to-toy-data-and-supplementary-data,-please-visit-https://github.com/Hsu-Che-Wei/scKB-.-Note-that-the-toy-data-only-contains-1-million-reads,-due-to-shallow-sequencing-depth,-the-COPILOT-parameters-min.UMI.low.quality-and-min.UMI.high.quality-should-be-adjusted-accordingly">&#182;</a></h3>
+<h4 id="The-toy-data-(1-million-raw-read-sequence)-was-preprocessed-to-generate-gene-by-cell-matrices-using-scKB.">The toy data (1 million raw read sequence) was preprocessed to generate gene-by-cell matrices using scKB.<a class="anchor-link" href="#The-toy-data-(1-million-raw-read-sequence)-was-preprocessed-to-generate-gene-by-cell-matrices-using-scKB.">&#182;</a></h4><h4 id="For-the-detail-of-scKB-and-access-to-toy-data-and-supplementary-data,-please-visit-https://github.com/Hsu-Che-Wei/scKB">For the detail of scKB and access to toy data and supplementary data, please visit <a href="https://github.com/Hsu-Che-Wei/scKB">https://github.com/Hsu-Che-Wei/scKB</a><a class="anchor-link" href="#For-the-detail-of-scKB-and-access-to-toy-data-and-supplementary-data,-please-visit-https://github.com/Hsu-Che-Wei/scKB">&#182;</a></h4><h4 id="Note-that-the-toy-data-only-contains-1-million-reads,-due-to-shallow-sequencing-depth,-the-COPILOT-parameters-min.UMI.low.quality-and-min.UMI.high.quality-should-be-adjusted-accordingly">Note that the toy data only contains 1 million reads, due to shallow sequencing depth, the COPILOT parameters min.UMI.low.quality and min.UMI.high.quality should be adjusted accordingly<a class="anchor-link" href="#Note-that-the-toy-data-only-contains-1-million-reads,-due-to-shallow-sequencing-depth,-the-COPILOT-parameters-min.UMI.low.quality-and-min.UMI.high.quality-should-be-adjusted-accordingly">&#182;</a></h4><h4 id="Working-directory-must-contain-subdirectories,supp_data">Working directory must contain subdirectories,supp_data<a class="anchor-link" href="#Working-directory-must-contain-subdirectories,supp_data">&#182;</a></h4><h4 id="supp_data/-should-contain-the-files,-which-are-aviable-on-Github-(github.com/Hsu-Che-Wei/COPILOT):">supp_data/ should contain the files, which are aviable on Github (github.com/Hsu-Che-Wei/COPILOT):<a class="anchor-link" href="#supp_data/-should-contain-the-files,-which-are-aviable-on-Github-(github.com/Hsu-Che-Wei/COPILOT):">&#182;</a></h4>
+<pre><code>Protoplasting_DEgene_FC2_list.txt (from Denyer, et al. 2019)
+color_scheme_at.RData (required if one choose to perform correlation-based annotation)
+Root_bulk_arabidopsis_curated.RD (required if one choose to perform correlation-based annotation)</code></pre>
+
 </div>
 </div>
 </div>
@@ -13533,7 +13537,7 @@ Output directory for quality filtered matrices. Default is NULL.</p>
 <p>species.name:
 Species name (character). Default is "Not Provided".</p>
 <p>transcriptome.name:
-Name of transcriptome annotation file. (e.g. TAIR10 for Arabidopsis). Default is "Not Provided".</p>
+Name of transcriptome annotation file. (e.g. TAIR10 for <em>Arabidopsis</em>). Default is "Not Provided".</p>
 <p>sample.stats:
 Meta data of the sample in data.frame format. Default is NULL.</p>
 <p>mt.pattern:
@@ -13555,7 +13559,7 @@ Whether or not to remove doublets after quality filtering of gene and cell (bool
 <p>do.seurat:
 Whether or not to perform normalization, PCA, UMAP and clustering using Seurat and output a Seurat object (boolean). Default is TRUE.</p>
 <p>do.annotation:
-Whether or not to do annotation (boolean). COPILOT only supports annotation on root of Arabidopsis thaliana and Oryza sativa. Default is FALSE.</p>
+Whether or not to do annotation (boolean). COPILOT only supports annotation on root of <em>Arabidopsis thaliana</em>. Default is FALSE.</p>
 <p>unwanted.genes:
 Gene IDs/names of unwanted genes (character vector, e.g. cell cycle related genes, organelle genes ... etc). Default is NULL.</p>
 <p>HVG:

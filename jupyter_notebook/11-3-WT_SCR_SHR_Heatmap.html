@@ -13081,6 +13081,21 @@ div#notebook {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Working-directory-should-contain-integrated-Seurat-object-of-WT-and-mutants,-which-is-aviable-on-GEO-under-record-GSE152766:">Working directory should contain integrated Seurat object of WT and mutants, which is aviable on GEO under record GSE152766:<a class="anchor-link" href="#Working-directory-should-contain-integrated-Seurat-object-of-WT-and-mutants,-which-is-aviable-on-GEO-under-record-GSE152766:">&#182;</a></h4>
+<pre><code>rc.integrated_wt_shr_scr.rds
+
+</code></pre>
+<h4 id="Working-directory-must-contain-subdirectories,supp_data">Working directory must contain subdirectories,supp_data<a class="anchor-link" href="#Working-directory-must-contain-subdirectories,supp_data">&#182;</a></h4><h4 id="supp_data/-should-contain-the-files,-which-are-aviable-on-Github-(github.com/Hsu-Che-Wei/COPILOT):">supp_data/ should contain the files, which are aviable on Github (github.com/Hsu-Che-Wei/COPILOT):<a class="anchor-link" href="#supp_data/-should-contain-the-files,-which-are-aviable-on-Github-(github.com/Hsu-Che-Wei/COPILOT):">&#182;</a></h4>
+<pre><code>features.tsv.gz
+
+</code></pre>
+<h4 id="The-file-'Benfey_single_cell-Samples.csv'-contains-the-meta-data-of-samples,-which-is-not-provided.-But-one-can-find-an-example-of-such-file-in-Supplementary-Dataset-1-(Shahan-&amp;-Hsu-et-al.)">The file 'Benfey_single_cell-Samples.csv' contains the meta data of samples, which is not provided. But one can find an example of such file in Supplementary Dataset 1 (Shahan &amp; Hsu et al.)<a class="anchor-link" href="#The-file-'Benfey_single_cell-Samples.csv'-contains-the-meta-data-of-samples,-which-is-not-provided.-But-one-can-find-an-example-of-such-file-in-Supplementary-Dataset-1-(Shahan-&amp;-Hsu-et-al.)">&#182;</a></h4>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
@@ -13111,7 +13126,7 @@ div#notebook {
 <span class="nf">library</span><span class="p">(</span><span class="n">ggrepel</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
 <span class="c1">#for 300gb ram </span>
-<span class="nf">options</span><span class="p">(</span><span class="n">future.globals.maxSize</span> <span class="o">=</span> <span class="m">300000</span> <span class="o">*</span> <span class="m">1024</span><span class="n">^2</span><span class="p">)</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">future.globals.maxSize</span> <span class="o">=</span> <span class="m">300000</span> <span class="o">*</span> <span class="m">1024</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13399,9 +13414,9 @@ cols(
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">rc.integrated</span><span class="o">$</span><span class="n">geno_trt</span> <span class="o">&lt;-</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&quot;WT&quot;</span><span class="p">)</span>
-<span class="n">rc.integrated</span><span class="o">$</span><span class="n">geno_trt[rc.integrated</span><span class="o">$</span><span class="n">geno</span><span class="o">==</span><span class="s">&quot;WT&quot;</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="s">&quot;WT&quot;</span>
-<span class="n">rc.integrated</span><span class="o">$</span><span class="n">geno_trt[rc.integrated</span><span class="o">$</span><span class="n">geno</span><span class="o">==</span><span class="s">&quot;shr-2&quot;</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="s">&quot;shr&quot;</span>
-<span class="n">rc.integrated</span><span class="o">$</span><span class="n">geno_trt[rc.integrated</span><span class="o">$</span><span class="n">geno</span><span class="o">==</span><span class="s">&quot;scr-4&quot;</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="s">&quot;scr&quot;</span>
+<span class="n">rc.integrated</span><span class="o">$</span><span class="n">geno_trt</span><span class="p">[</span><span class="n">rc.integrated</span><span class="o">$</span><span class="n">geno</span><span class="o">==</span><span class="s">&quot;WT&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;WT&quot;</span>
+<span class="n">rc.integrated</span><span class="o">$</span><span class="n">geno_trt</span><span class="p">[</span><span class="n">rc.integrated</span><span class="o">$</span><span class="n">geno</span><span class="o">==</span><span class="s">&quot;shr-2&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;shr&quot;</span>
+<span class="n">rc.integrated</span><span class="o">$</span><span class="n">geno_trt</span><span class="p">[</span><span class="n">rc.integrated</span><span class="o">$</span><span class="n">geno</span><span class="o">==</span><span class="s">&quot;scr-4&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;scr&quot;</span>
 <span class="n">rc.integrated</span><span class="o">$</span><span class="n">geno_trt</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="n">rc.integrated</span><span class="o">$</span><span class="n">geno_trt</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;WT&quot;</span><span class="p">,</span> <span class="s">&quot;shr&quot;</span><span class="p">,</span> <span class="s">&quot;scr&quot;</span><span class="p">))</span>
 </pre></div>
 
@@ -13421,8 +13436,8 @@ cols(
 
 <span class="n">order</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Quiescent Center&quot;</span><span class="p">,</span> <span class="s">&quot;Columella&quot;</span><span class="p">,</span> <span class="s">&quot;Lateral Root Cap&quot;</span><span class="p">,</span> <span class="s">&quot;Atrichoblast&quot;</span><span class="p">,</span> <span class="s">&quot;Trichoblast&quot;</span><span class="p">,</span> <span class="s">&quot;Cortex&quot;</span><span class="p">,</span> <span class="s">&quot;Endodermis&quot;</span><span class="p">,</span> <span class="s">&quot;Pericycle&quot;</span><span class="p">,</span> <span class="s">&quot;Phloem&quot;</span><span class="p">,</span> <span class="s">&quot;Xylem&quot;</span><span class="p">,</span> <span class="s">&quot;Procambium&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">)</span>
 <span class="n">palette</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;#BD53FF&quot;</span><span class="p">,</span> <span class="s">&quot;#5AB953&quot;</span><span class="p">,</span> <span class="s">&quot;#BFEF45&quot;</span><span class="p">,</span> <span class="s">&quot;#008080&quot;</span><span class="p">,</span> <span class="s">&quot;#21B6A8&quot;</span><span class="p">,</span> <span class="s">&quot;#82B6FF&quot;</span><span class="p">,</span> <span class="s">&quot;#0000FF&quot;</span><span class="p">,</span><span class="s">&quot;#FF9900&quot;</span><span class="p">,</span><span class="s">&quot;#E6194B&quot;</span><span class="p">,</span> <span class="s">&quot;#9A6324&quot;</span><span class="p">,</span> <span class="s">&quot;#FFE119&quot;</span><span class="p">,</span><span class="s">&quot;#EEEEEE&quot;</span><span class="p">)</span>
-<span class="n">rc.integrated</span><span class="o">$</span><span class="n">celltype.anno</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="n">rc.integrated</span><span class="o">$</span><span class="n">celltype.anno</span><span class="p">,</span> <span class="n">levels</span> <span class="o">=</span> <span class="n">order</span><span class="nf">[sort</span><span class="p">(</span><span class="nf">match</span><span class="p">(</span><span class="nf">unique</span><span class="p">(</span><span class="n">rc.integrated</span><span class="o">$</span><span class="n">celltype.anno</span><span class="p">),</span><span class="n">order</span><span class="p">))</span><span class="n">]</span><span class="p">)</span>
-<span class="n">color</span> <span class="o">&lt;-</span> <span class="n">palette</span><span class="nf">[sort</span><span class="p">(</span><span class="nf">match</span><span class="p">(</span><span class="nf">unique</span><span class="p">(</span><span class="n">rc.integrated</span><span class="o">$</span><span class="n">celltype.anno</span><span class="p">),</span><span class="n">order</span><span class="p">))</span><span class="n">]</span>
+<span class="n">rc.integrated</span><span class="o">$</span><span class="n">celltype.anno</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="n">rc.integrated</span><span class="o">$</span><span class="n">celltype.anno</span><span class="p">,</span> <span class="n">levels</span> <span class="o">=</span> <span class="n">order</span><span class="p">[</span><span class="nf">sort</span><span class="p">(</span><span class="nf">match</span><span class="p">(</span><span class="nf">unique</span><span class="p">(</span><span class="n">rc.integrated</span><span class="o">$</span><span class="n">celltype.anno</span><span class="p">),</span><span class="n">order</span><span class="p">))])</span>
+<span class="n">color</span> <span class="o">&lt;-</span> <span class="n">palette</span><span class="p">[</span><span class="nf">sort</span><span class="p">(</span><span class="nf">match</span><span class="p">(</span><span class="nf">unique</span><span class="p">(</span><span class="n">rc.integrated</span><span class="o">$</span><span class="n">celltype.anno</span><span class="p">),</span><span class="n">order</span><span class="p">))]</span>
 </pre></div>
 
     </div>
@@ -26649,7 +26664,7 @@ height=360
   <span class="n">pooled_endo</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">afm</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
 
   <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="nf">unique</span><span class="p">(</span><span class="n">Endo_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">m</span> <span class="o">&lt;-</span> <span class="n">afm[</span><span class="p">,</span><span class="nf">which</span><span class="p">(</span><span class="n">Endo_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="o">==</span><span class="n">i</span><span class="p">)</span><span class="n">]</span>
+    <span class="n">m</span> <span class="o">&lt;-</span> <span class="n">afm</span><span class="p">[,</span><span class="nf">which</span><span class="p">(</span><span class="n">Endo_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="o">==</span><span class="n">i</span><span class="p">)]</span>
     <span class="n">pooled_endo</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">pooled_endo</span><span class="p">,</span> <span class="nf">rowSums</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="nf">ncol</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
   <span class="p">}</span>
 </pre></div>
@@ -26677,7 +26692,7 @@ height=360
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="p">(</span><span class="n">endo_sub_m</span> <span class="o">&lt;-</span> <span class="n">pooled_endo[genes_to_plt_endo</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;T0&quot;</span><span class="p">,</span> <span class="s">&quot;T1&quot;</span><span class="p">,</span> <span class="s">&quot;T2&quot;</span><span class="p">,</span> <span class="s">&quot;T3&quot;</span><span class="p">,</span> <span class="s">&quot;T4&quot;</span><span class="p">,</span> <span class="s">&quot;T5&quot;</span><span class="p">,</span> <span class="s">&quot;T6&quot;</span><span class="p">,</span> <span class="s">&quot;T7&quot;</span><span class="p">,</span> <span class="s">&quot;T8&quot;</span><span class="p">,</span> <span class="s">&quot;T9&quot;</span><span class="p">)</span><span class="n">]</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="p">(</span><span class="n">endo_sub_m</span> <span class="o">&lt;-</span> <span class="n">pooled_endo</span><span class="p">[</span><span class="n">genes_to_plt_endo</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;T0&quot;</span><span class="p">,</span> <span class="s">&quot;T1&quot;</span><span class="p">,</span> <span class="s">&quot;T2&quot;</span><span class="p">,</span> <span class="s">&quot;T3&quot;</span><span class="p">,</span> <span class="s">&quot;T4&quot;</span><span class="p">,</span> <span class="s">&quot;T5&quot;</span><span class="p">,</span> <span class="s">&quot;T6&quot;</span><span class="p">,</span> <span class="s">&quot;T7&quot;</span><span class="p">,</span> <span class="s">&quot;T8&quot;</span><span class="p">,</span> <span class="s">&quot;T9&quot;</span><span class="p">)])</span>
 <span class="n">WT_endo</span> <span class="o">&lt;-</span> <span class="n">endo_sub_m</span>
 </pre></div>
 
@@ -26785,8 +26800,8 @@ height=360
 <span class="n">mat2</span> <span class="o">=</span> <span class="nf">t</span><span class="p">(</span><span class="nf">apply</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">q10</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">0.1</span><span class="p">)</span>
     <span class="n">q90</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">0.9</span><span class="p">)</span>
-    <span class="n">x[x</span> <span class="o">&lt;</span> <span class="n">q10]</span> <span class="o">=</span> <span class="n">q10</span>
-    <span class="n">x[x</span> <span class="o">&gt;</span> <span class="n">q90]</span> <span class="o">=</span> <span class="n">q90</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">q10</span><span class="p">]</span> <span class="o">=</span> <span class="n">q10</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">q90</span><span class="p">]</span> <span class="o">=</span> <span class="n">q90</span>
     <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="p">}))</span>
 <span class="nf">colnames</span><span class="p">(</span><span class="n">mat2</span><span class="p">)</span> <span class="o">=</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
@@ -27840,7 +27855,7 @@ Active assay: integrated (17978 features, 17978 variable features)
   <span class="n">pooled_endo</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">afm</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
 
   <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="nf">unique</span><span class="p">(</span><span class="n">Endo_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">m</span> <span class="o">&lt;-</span> <span class="n">afm[</span><span class="p">,</span><span class="nf">which</span><span class="p">(</span><span class="n">Endo_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="o">==</span><span class="n">i</span><span class="p">)</span><span class="n">]</span>
+    <span class="n">m</span> <span class="o">&lt;-</span> <span class="n">afm</span><span class="p">[,</span><span class="nf">which</span><span class="p">(</span><span class="n">Endo_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="o">==</span><span class="n">i</span><span class="p">)]</span>
     <span class="n">pooled_endo</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">pooled_endo</span><span class="p">,</span> <span class="nf">rowSums</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="nf">ncol</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
   <span class="p">}</span>
 </pre></div>
@@ -27868,7 +27883,7 @@ Active assay: integrated (17978 features, 17978 variable features)
 <div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="p">(</span><span class="n">endo_sub_m</span> <span class="o">&lt;-</span> <span class="n">pooled_endo[genes_to_plt_endo</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;T0&quot;</span><span class="p">,</span> <span class="s">&quot;T1&quot;</span><span class="p">,</span> <span class="s">&quot;T2&quot;</span><span class="p">,</span> <span class="s">&quot;T3&quot;</span><span class="p">,</span> <span class="s">&quot;T4&quot;</span><span class="p">,</span> <span class="s">&quot;T5&quot;</span><span class="p">,</span> <span class="s">&quot;T6&quot;</span><span class="p">,</span> <span class="s">&quot;T7&quot;</span><span class="p">,</span> <span class="s">&quot;T8&quot;</span><span class="p">,</span> <span class="s">&quot;T9&quot;</span><span class="p">)</span><span class="n">]</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="p">(</span><span class="n">endo_sub_m</span> <span class="o">&lt;-</span> <span class="n">pooled_endo</span><span class="p">[</span><span class="n">genes_to_plt_endo</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;T0&quot;</span><span class="p">,</span> <span class="s">&quot;T1&quot;</span><span class="p">,</span> <span class="s">&quot;T2&quot;</span><span class="p">,</span> <span class="s">&quot;T3&quot;</span><span class="p">,</span> <span class="s">&quot;T4&quot;</span><span class="p">,</span> <span class="s">&quot;T5&quot;</span><span class="p">,</span> <span class="s">&quot;T6&quot;</span><span class="p">,</span> <span class="s">&quot;T7&quot;</span><span class="p">,</span> <span class="s">&quot;T8&quot;</span><span class="p">,</span> <span class="s">&quot;T9&quot;</span><span class="p">)])</span>
 
 <span class="nf">colnames</span><span class="p">(</span><span class="n">endo_sub_m</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;shr_T0&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T1&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T2&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T3&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T4&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T5&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T6&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T7&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T8&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T9&quot;</span><span class="p">)</span>
 <span class="n">shr_endo_m</span> <span class="o">&lt;-</span> <span class="n">endo_sub_m</span>
@@ -27963,19 +27978,6 @@ Active assay: integrated (17978 features, 17978 variable features)
 
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
@@ -28078,7 +28080,7 @@ Active assay: integrated (17978 features, 17978 variable features)
   <span class="n">pooled_endo</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">afm</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
 
   <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="nf">unique</span><span class="p">(</span><span class="n">Endo_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">m</span> <span class="o">&lt;-</span> <span class="n">afm[</span><span class="p">,</span><span class="nf">which</span><span class="p">(</span><span class="n">Endo_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="o">==</span><span class="n">i</span><span class="p">)</span><span class="n">]</span>
+    <span class="n">m</span> <span class="o">&lt;-</span> <span class="n">afm</span><span class="p">[,</span><span class="nf">which</span><span class="p">(</span><span class="n">Endo_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="o">==</span><span class="n">i</span><span class="p">)]</span>
     <span class="n">pooled_endo</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">pooled_endo</span><span class="p">,</span> <span class="nf">rowSums</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="nf">ncol</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
   <span class="p">}</span>
 </pre></div>
@@ -28106,7 +28108,7 @@ Active assay: integrated (17978 features, 17978 variable features)
 <div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="p">(</span><span class="n">endo_sub_m</span> <span class="o">&lt;-</span> <span class="n">pooled_endo[genes_to_plt_endo</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;T0&quot;</span><span class="p">,</span> <span class="s">&quot;T1&quot;</span><span class="p">,</span> <span class="s">&quot;T2&quot;</span><span class="p">,</span> <span class="s">&quot;T3&quot;</span><span class="p">,</span> <span class="s">&quot;T4&quot;</span><span class="p">,</span> <span class="s">&quot;T5&quot;</span><span class="p">,</span> <span class="s">&quot;T6&quot;</span><span class="p">,</span> <span class="s">&quot;T7&quot;</span><span class="p">,</span> <span class="s">&quot;T8&quot;</span><span class="p">,</span> <span class="s">&quot;T9&quot;</span><span class="p">)</span><span class="n">]</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="p">(</span><span class="n">endo_sub_m</span> <span class="o">&lt;-</span> <span class="n">pooled_endo</span><span class="p">[</span><span class="n">genes_to_plt_endo</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;T0&quot;</span><span class="p">,</span> <span class="s">&quot;T1&quot;</span><span class="p">,</span> <span class="s">&quot;T2&quot;</span><span class="p">,</span> <span class="s">&quot;T3&quot;</span><span class="p">,</span> <span class="s">&quot;T4&quot;</span><span class="p">,</span> <span class="s">&quot;T5&quot;</span><span class="p">,</span> <span class="s">&quot;T6&quot;</span><span class="p">,</span> <span class="s">&quot;T7&quot;</span><span class="p">,</span> <span class="s">&quot;T8&quot;</span><span class="p">,</span> <span class="s">&quot;T9&quot;</span><span class="p">)])</span>
 
 <span class="nf">colnames</span><span class="p">(</span><span class="n">endo_sub_m</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;scr_T0&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T1&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T2&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T3&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T4&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T5&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T6&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T7&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T8&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T9&quot;</span><span class="p">)</span>
 <span class="n">scr_endo_m</span> <span class="o">&lt;-</span> <span class="n">endo_sub_m</span>
@@ -28330,8 +28332,8 @@ Active assay: integrated (17978 features, 17978 variable features)
 <span class="n">mat2</span> <span class="o">=</span> <span class="nf">t</span><span class="p">(</span><span class="nf">apply</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">q10</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">0.1</span><span class="p">)</span>
     <span class="n">q90</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">0.9</span><span class="p">)</span>
-    <span class="n">x[x</span> <span class="o">&lt;</span> <span class="n">q10]</span> <span class="o">=</span> <span class="n">q10</span>
-    <span class="n">x[x</span> <span class="o">&gt;</span> <span class="n">q90]</span> <span class="o">=</span> <span class="n">q90</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">q10</span><span class="p">]</span> <span class="o">=</span> <span class="n">q10</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">q90</span><span class="p">]</span> <span class="o">=</span> <span class="n">q90</span>
     <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="p">}))</span>
 <span class="nf">colnames</span><span class="p">(</span><span class="n">mat2</span><span class="p">)</span> <span class="o">=</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
@@ -29677,7 +29679,7 @@ height=600
   <span class="n">pooled_cortex</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">afm</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
 
   <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="nf">unique</span><span class="p">(</span><span class="n">Cor_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">m</span> <span class="o">&lt;-</span> <span class="n">afm[</span><span class="p">,</span><span class="nf">which</span><span class="p">(</span><span class="n">Cor_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="o">==</span><span class="n">i</span><span class="p">)</span><span class="n">]</span>
+    <span class="n">m</span> <span class="o">&lt;-</span> <span class="n">afm</span><span class="p">[,</span><span class="nf">which</span><span class="p">(</span><span class="n">Cor_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="o">==</span><span class="n">i</span><span class="p">)]</span>
     <span class="n">pooled_cortex</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">pooled_cortex</span><span class="p">,</span> <span class="nf">rowSums</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="nf">ncol</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
   <span class="p">}</span>
 </pre></div>
@@ -29719,7 +29721,7 @@ height=600
 <div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="p">(</span><span class="n">cor_sub_m</span> <span class="o">&lt;-</span> <span class="n">pooled_cortex[genes_to_plt_cortex</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;T0&quot;</span><span class="p">,</span> <span class="s">&quot;T1&quot;</span><span class="p">,</span> <span class="s">&quot;T2&quot;</span><span class="p">,</span> <span class="s">&quot;T3&quot;</span><span class="p">,</span> <span class="s">&quot;T4&quot;</span><span class="p">,</span> <span class="s">&quot;T5&quot;</span><span class="p">,</span> <span class="s">&quot;T6&quot;</span><span class="p">,</span> <span class="s">&quot;T7&quot;</span><span class="p">,</span> <span class="s">&quot;T8&quot;</span><span class="p">,</span> <span class="s">&quot;T9&quot;</span><span class="p">)</span><span class="n">]</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="p">(</span><span class="n">cor_sub_m</span> <span class="o">&lt;-</span> <span class="n">pooled_cortex</span><span class="p">[</span><span class="n">genes_to_plt_cortex</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;T0&quot;</span><span class="p">,</span> <span class="s">&quot;T1&quot;</span><span class="p">,</span> <span class="s">&quot;T2&quot;</span><span class="p">,</span> <span class="s">&quot;T3&quot;</span><span class="p">,</span> <span class="s">&quot;T4&quot;</span><span class="p">,</span> <span class="s">&quot;T5&quot;</span><span class="p">,</span> <span class="s">&quot;T6&quot;</span><span class="p">,</span> <span class="s">&quot;T7&quot;</span><span class="p">,</span> <span class="s">&quot;T8&quot;</span><span class="p">,</span> <span class="s">&quot;T9&quot;</span><span class="p">)])</span>
 
 <span class="n">WT_cor_m</span> <span class="o">&lt;-</span> <span class="n">cor_sub_m</span>
 </pre></div>
@@ -29873,8 +29875,8 @@ height=600
 <span class="n">mat2</span> <span class="o">=</span> <span class="nf">t</span><span class="p">(</span><span class="nf">apply</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">q10</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">0.1</span><span class="p">)</span>
     <span class="n">q90</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">0.9</span><span class="p">)</span>
-    <span class="n">x[x</span> <span class="o">&lt;</span> <span class="n">q10]</span> <span class="o">=</span> <span class="n">q10</span>
-    <span class="n">x[x</span> <span class="o">&gt;</span> <span class="n">q90]</span> <span class="o">=</span> <span class="n">q90</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">q10</span><span class="p">]</span> <span class="o">=</span> <span class="n">q10</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">q90</span><span class="p">]</span> <span class="o">=</span> <span class="n">q90</span>
     <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="p">}))</span>
 <span class="nf">colnames</span><span class="p">(</span><span class="n">mat2</span><span class="p">)</span> <span class="o">=</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
@@ -30871,7 +30873,7 @@ Active assay: integrated (17978 features, 17978 variable features)
   <span class="n">pooled_cor</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">afm</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
 
   <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="nf">unique</span><span class="p">(</span><span class="n">COR_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">m</span> <span class="o">&lt;-</span> <span class="n">afm[</span><span class="p">,</span><span class="nf">which</span><span class="p">(</span><span class="n">COR_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="o">==</span><span class="n">i</span><span class="p">)</span><span class="n">]</span>
+    <span class="n">m</span> <span class="o">&lt;-</span> <span class="n">afm</span><span class="p">[,</span><span class="nf">which</span><span class="p">(</span><span class="n">COR_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="o">==</span><span class="n">i</span><span class="p">)]</span>
     <span class="n">pooled_cor</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">pooled_cor</span><span class="p">,</span> <span class="nf">rowSums</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="nf">ncol</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
   <span class="p">}</span>
 </pre></div>
@@ -30899,7 +30901,7 @@ Active assay: integrated (17978 features, 17978 variable features)
 <div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="p">(</span><span class="n">cor_sub_m</span> <span class="o">&lt;-</span> <span class="n">pooled_cor[genes_to_plt_cortex</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;T0&quot;</span><span class="p">,</span> <span class="s">&quot;T1&quot;</span><span class="p">,</span> <span class="s">&quot;T2&quot;</span><span class="p">,</span> <span class="s">&quot;T3&quot;</span><span class="p">,</span> <span class="s">&quot;T4&quot;</span><span class="p">,</span> <span class="s">&quot;T5&quot;</span><span class="p">,</span> <span class="s">&quot;T6&quot;</span><span class="p">,</span> <span class="s">&quot;T7&quot;</span><span class="p">,</span> <span class="s">&quot;T8&quot;</span><span class="p">,</span> <span class="s">&quot;T9&quot;</span><span class="p">)</span><span class="n">]</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="p">(</span><span class="n">cor_sub_m</span> <span class="o">&lt;-</span> <span class="n">pooled_cor</span><span class="p">[</span><span class="n">genes_to_plt_cortex</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;T0&quot;</span><span class="p">,</span> <span class="s">&quot;T1&quot;</span><span class="p">,</span> <span class="s">&quot;T2&quot;</span><span class="p">,</span> <span class="s">&quot;T3&quot;</span><span class="p">,</span> <span class="s">&quot;T4&quot;</span><span class="p">,</span> <span class="s">&quot;T5&quot;</span><span class="p">,</span> <span class="s">&quot;T6&quot;</span><span class="p">,</span> <span class="s">&quot;T7&quot;</span><span class="p">,</span> <span class="s">&quot;T8&quot;</span><span class="p">,</span> <span class="s">&quot;T9&quot;</span><span class="p">)])</span>
 
 <span class="nf">colnames</span><span class="p">(</span><span class="n">cor_sub_m</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;shr_T0&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T1&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T2&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T3&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T4&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T5&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T6&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T7&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T8&quot;</span><span class="p">,</span> <span class="s">&quot;shr_T9&quot;</span><span class="p">)</span>
 <span class="n">shr_cor_m</span> <span class="o">&lt;-</span> <span class="n">cor_sub_m</span>
@@ -31061,7 +31063,7 @@ Active assay: integrated (17978 features, 17978 variable features)
   <span class="n">pooled_cor</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">afm</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
 
   <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="nf">unique</span><span class="p">(</span><span class="n">COR_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">m</span> <span class="o">&lt;-</span> <span class="n">afm[</span><span class="p">,</span><span class="nf">which</span><span class="p">(</span><span class="n">COR_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="o">==</span><span class="n">i</span><span class="p">)</span><span class="n">]</span>
+    <span class="n">m</span> <span class="o">&lt;-</span> <span class="n">afm</span><span class="p">[,</span><span class="nf">which</span><span class="p">(</span><span class="n">COR_QC</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">consensus.time.group</span><span class="o">==</span><span class="n">i</span><span class="p">)]</span>
     <span class="n">pooled_cor</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">pooled_cor</span><span class="p">,</span> <span class="nf">rowSums</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="nf">ncol</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
   <span class="p">}</span>
 </pre></div>
@@ -31089,7 +31091,7 @@ Active assay: integrated (17978 features, 17978 variable features)
 <div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="p">(</span><span class="n">cor_sub_m</span> <span class="o">&lt;-</span> <span class="n">pooled_cor[genes_to_plt_cortex</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;T0&quot;</span><span class="p">,</span> <span class="s">&quot;T1&quot;</span><span class="p">,</span> <span class="s">&quot;T2&quot;</span><span class="p">,</span> <span class="s">&quot;T3&quot;</span><span class="p">,</span> <span class="s">&quot;T4&quot;</span><span class="p">,</span> <span class="s">&quot;T5&quot;</span><span class="p">,</span> <span class="s">&quot;T6&quot;</span><span class="p">,</span> <span class="s">&quot;T7&quot;</span><span class="p">,</span> <span class="s">&quot;T8&quot;</span><span class="p">,</span> <span class="s">&quot;T9&quot;</span><span class="p">)</span><span class="n">]</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="p">(</span><span class="n">cor_sub_m</span> <span class="o">&lt;-</span> <span class="n">pooled_cor</span><span class="p">[</span><span class="n">genes_to_plt_cortex</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;T0&quot;</span><span class="p">,</span> <span class="s">&quot;T1&quot;</span><span class="p">,</span> <span class="s">&quot;T2&quot;</span><span class="p">,</span> <span class="s">&quot;T3&quot;</span><span class="p">,</span> <span class="s">&quot;T4&quot;</span><span class="p">,</span> <span class="s">&quot;T5&quot;</span><span class="p">,</span> <span class="s">&quot;T6&quot;</span><span class="p">,</span> <span class="s">&quot;T7&quot;</span><span class="p">,</span> <span class="s">&quot;T8&quot;</span><span class="p">,</span> <span class="s">&quot;T9&quot;</span><span class="p">)])</span>
 
 <span class="nf">colnames</span><span class="p">(</span><span class="n">cor_sub_m</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;scr_T0&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T1&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T2&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T3&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T4&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T5&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T6&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T7&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T8&quot;</span><span class="p">,</span> <span class="s">&quot;scr_T9&quot;</span><span class="p">)</span>
 <span class="n">scr_cor_m</span> <span class="o">&lt;-</span> <span class="n">cor_sub_m</span>
@@ -31313,8 +31315,8 @@ Active assay: integrated (17978 features, 17978 variable features)
 <span class="n">mat2</span> <span class="o">=</span> <span class="nf">t</span><span class="p">(</span><span class="nf">apply</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">q10</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">0.1</span><span class="p">)</span>
     <span class="n">q90</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">0.9</span><span class="p">)</span>
-    <span class="n">x[x</span> <span class="o">&lt;</span> <span class="n">q10]</span> <span class="o">=</span> <span class="n">q10</span>
-    <span class="n">x[x</span> <span class="o">&gt;</span> <span class="n">q90]</span> <span class="o">=</span> <span class="n">q90</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">q10</span><span class="p">]</span> <span class="o">=</span> <span class="n">q10</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">q90</span><span class="p">]</span> <span class="o">=</span> <span class="n">q90</span>
     <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="p">}))</span>
 <span class="nf">colnames</span><span class="p">(</span><span class="n">mat2</span><span class="p">)</span> <span class="o">=</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
@@ -36409,19 +36411,6 @@ loaded via a namespace (and not attached):
 
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 

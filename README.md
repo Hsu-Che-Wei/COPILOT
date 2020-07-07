@@ -6,7 +6,7 @@ Single cell RNA-seq preprocessing tool for gene-by-cell matrices of UMI counts. 
 
 1. Since scKB and COPILOT incorporates kallisto, which is a read aligner using peudoalignment, they are about ~ 30 times faster than CellRanger 3.1 in processing time. 
 
-2. If user is considering calculating RNA velocity or inferring trajectory based on splicing dynamics in downstream analysis, then COPILOT along with scKB can help you with that since together they produce spliced and unspliced quality-filtered count matrices. 
+2. If user wants to calculate RNA velocity or infer trajectory based on splicing dynamics in downstream analysis, then COPILOT along with scKB can help you with since together they produce spliced and unspliced quality-filtered count matrices. 
 
 3. If user want to use specific sets of genes that represent the signal of noise or low quality cells for cell-filtering, COPILOT offers such function.
 
@@ -55,7 +55,7 @@ filtered.mtx.output.dir: Output directory for quality filtered matrices. Default
 
 species.name: Species name (character). Default is "Not Provided".
 
-transcriptome.name: Name of transcriptome annotation file. (e.g. TAIR10 for Arabidopsis). Default is "Not Provided".
+transcriptome.name: Name of transcriptome annotation file. (e.g. TAIR10 for _Arabidopsis_). Default is "Not Provided".
 
 sample.stats: Meta data of the sample in data.frame format. Default is NULL.
 
@@ -77,7 +77,7 @@ remove.doublet: Whether or not to remove doublets after quality filtering of gen
 
 do.seurat: Whether or not to perform normalization, PCA, UMAP and clustering using Seurat and output a Seurat object (boolean). Default is TRUE.
 
-do.annotation: Whether or not to do annotation (boolean). COPILOT only supports annotation on root of Arabidopsis thaliana and Oryza sativa. Default is FALSE.
+do.annotation: Whether or not to do annotation (boolean). COPILOT only supports annotation on root of _Arabidopsis thaliana_. Default is FALSE.
 
 unwanted.genes: Gene IDs/names of unwanted genes (character vector, e.g. cell cycle related genes, organelle genes ... etc). Default is NULL.
 
@@ -107,4 +107,16 @@ COPILOT relies on detecting the distribution of cells enriched in mitochondrial 
 
 If the algorithm detects no putative dying cells, the initial filtering threshold will then be set as what user feed to argument "min.UMI.high.quality". It is recommended to play around with this argument until the number of high quality cell remains after filtering makes sense.
 
-For users that have scRNA-seq data of Arabidopsis thaliana root, and wish to perform correlation-based annotation, please make sure that all necessary files are downloaded from folder named "supp_data".  
+For users that have scRNA-seq data of _Arabidopsis thaliana_ root, and wish to perform correlation-based annotation, please make sure that all necessary files are downloaded from folder named "supp_data".  
+
+## Application 
+
+In the folder "jupyter_notebook", one can find codes demonstrating how some typical down-stream analysis of scRNA-seq were performed on COPILOT-preprocessed data. 
+
+## Citation
+
+Shahan & Hsu et al. 2020. A single cell _Arabidopsis_ root atlas reveals developmental trajectories in wild type and cell identity mutants. bioRxiv. doi: https://doi.org/10.1101/2020.06.29.178863
+
+
+
+

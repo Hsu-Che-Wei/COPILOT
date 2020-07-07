@@ -13081,6 +13081,15 @@ div#notebook {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Working-directory-should-contain-root-atlas-Seurat-object,-which-is-aviable-on-GEO-under-record-GSE152766:">Working directory should contain root atlas Seurat object, which is aviable on GEO under record GSE152766:<a class="anchor-link" href="#Working-directory-should-contain-root-atlas-Seurat-object,-which-is-aviable-on-GEO-under-record-GSE152766:">&#182;</a></h4>
+<pre><code>Root_Atlas.rds (or get it by running through notebook 2)</code></pre>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
@@ -13192,7 +13201,8 @@ loaded via a namespace (and not attached):
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="n">rc.integrated</span> <span class="o">&lt;-</span> <span class="nf">readRDS</span><span class="p">(</span><span class="s">&#39;./Root_Atlas.rds&#39;</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Load atlas</span>
+<span class="n">rc.integrated</span> <span class="o">&lt;-</span> <span class="nf">readRDS</span><span class="p">(</span><span class="s">&#39;./Root_Atlas.rds&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13205,7 +13215,7 @@ loaded via a namespace (and not attached):
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># 50 UMAP dimensions </span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Save 50 UMAP dimensions </span>
 <span class="nf">write.table</span><span class="p">(</span><span class="nf">format</span><span class="p">(</span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">rc.integrated</span><span class="o">@</span><span class="n">reductions</span><span class="o">$</span><span class="n">umap_50</span><span class="o">@</span><span class="n">cell.embeddings</span><span class="p">),</span> <span class="n">scientific</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">digits</span> <span class="o">=</span> <span class="m">20</span><span class="p">),</span><span class="n">file</span> <span class="o">=</span> <span class="s">&quot;./supp_data/umap50.txt&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;\t&quot;</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">col.names</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">quote</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </pre></div>
 
@@ -13219,7 +13229,7 @@ loaded via a namespace (and not attached):
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># 2D UMAP</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Save 2D UMAP</span>
 <span class="nf">write.table</span><span class="p">(</span><span class="nf">format</span><span class="p">(</span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">rc.integrated</span><span class="o">@</span><span class="n">reductions</span><span class="o">$</span><span class="n">umap_2D</span><span class="o">@</span><span class="n">cell.embeddings</span><span class="p">),</span> <span class="n">scientific</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">digits</span> <span class="o">=</span> <span class="m">20</span><span class="p">),</span><span class="n">file</span> <span class="o">=</span> <span class="s">&quot;./supp_data/umap.txt&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;\t&quot;</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">col.names</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">quote</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </pre></div>
 
@@ -13233,7 +13243,7 @@ loaded via a namespace (and not attached):
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># Gene ids</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Save Gene ids</span>
 <span class="nf">write.table</span><span class="p">(</span><span class="nf">rownames</span><span class="p">(</span><span class="n">rc.integrated</span><span class="p">),</span><span class="n">file</span> <span class="o">=</span> <span class="s">&quot;./supp_data/hvg_ids.txt&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;\t&quot;</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">col.names</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">quote</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">);</span>
 </pre></div>
 

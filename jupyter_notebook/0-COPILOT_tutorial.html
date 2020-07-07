@@ -13081,6 +13081,19 @@ div#notebook {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="The-data-(sample-name-:-col0)-is-aviable-on-GEO-under-record-GSE152766.-It-was-preprocessed-to-generate-gene-by-cell-matrices-using-scKB.">The data (sample name : col0) is aviable on GEO under record GSE152766. It was preprocessed to generate gene-by-cell matrices using scKB.<a class="anchor-link" href="#The-data-(sample-name-:-col0)-is-aviable-on-GEO-under-record-GSE152766.-It-was-preprocessed-to-generate-gene-by-cell-matrices-using-scKB.">&#182;</a></h4><h4 id="Working-directory-must-contain-subdirectories,supp_data">Working directory must contain subdirectories,supp_data<a class="anchor-link" href="#Working-directory-must-contain-subdirectories,supp_data">&#182;</a></h4><h4 id="supp_data/-should-contain-the-files,-which-are-aviable-on-Github-(github.com/Hsu-Che-Wei/COPILOT):">supp_data/ should contain the files, which are aviable on Github (github.com/Hsu-Che-Wei/COPILOT):<a class="anchor-link" href="#supp_data/-should-contain-the-files,-which-are-aviable-on-Github-(github.com/Hsu-Che-Wei/COPILOT):">&#182;</a></h4>
+<pre><code>Protoplasting_DEgene_FC2_list.txt (from Denyer, et al. 2019)
+color_scheme_at.RData (required if one choose to perform correlation-based annotation)
+Root_bulk_arabidopsis_curated.RD (required if one choose to perform correlation-based annotation)
+
+</code></pre>
+<h4 id="The-file-'Benfey_single_cell-Samples.csv'-contains-the-meta-data-of-samples,-which-is-not-provided.-But-one-can-find-an-example-of-such-file-in-Supplementary-Dataset-1-(Shahan-&amp;-Hsu-et-al.)">The file 'Benfey_single_cell-Samples.csv' contains the meta data of samples, which is not provided. But one can find an example of such file in Supplementary Dataset 1 (Shahan &amp; Hsu et al.)<a class="anchor-link" href="#The-file-'Benfey_single_cell-Samples.csv'-contains-the-meta-data-of-samples,-which-is-not-provided.-But-one-can-find-an-example-of-such-file-in-Supplementary-Dataset-1-(Shahan-&amp;-Hsu-et-al.)">&#182;</a></h4>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
@@ -13155,9 +13168,9 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] COPILOT_0.1.0   forcats_0.5.0   stringr_1.4.0   dplyr_0.8.5    
+ [1] COPILOT_0.1.0   forcats_0.5.0   stringr_1.4.0   dplyr_1.0.0    
  [5] purrr_0.3.4     readr_1.3.1     tidyr_1.1.0     tibble_3.0.1   
- [9] ggplot2_3.3.0   tidyverse_1.3.0
+ [9] ggplot2_3.3.1   tidyverse_1.3.0
 
 loaded via a namespace (and not attached):
   [1] readxl_1.3.1                uuid_0.1-4                 
@@ -13170,61 +13183,62 @@ loaded via a namespace (and not attached):
  [15] fansi_0.4.1                 magrittr_1.5               
  [17] cluster_2.1.0               ROCR_1.0-11                
  [19] limma_3.42.2                globals_0.12.5             
- [21] modelr_0.1.6                matrixStats_0.56.0         
+ [21] modelr_0.1.8                matrixStats_0.56.0         
  [23] R.utils_2.9.2               colorspace_1.4-1           
- [25] rvest_0.3.5                 rappdirs_0.3.1             
- [27] ggrepel_0.8.2               haven_2.2.0                
- [29] crayon_1.3.4                RCurl_1.98-1.1             
- [31] jsonlite_1.6.1              survival_3.1-12            
- [33] zoo_1.8-8                   ape_5.3                    
- [35] glue_1.4.1                  gtable_0.3.0               
- [37] zlibbioc_1.32.0             XVector_0.26.0             
- [39] R2HTML_2.3.2                leiden_0.3.3               
- [41] DelayedArray_0.12.3         DropletUtils_1.6.1         
- [43] Rhdf5lib_1.8.0              future.apply_1.5.0         
- [45] SingleCellExperiment_1.8.0  BiocGenerics_0.32.0        
- [47] HDF5Array_1.14.3            scales_1.1.1               
- [49] DBI_1.1.0                   edgeR_3.28.1               
- [51] Rcpp_1.0.4.6                viridisLite_0.3.0          
- [53] reticulate_1.15             dqrng_0.2.1                
- [55] rsvd_1.0.3                  stats4_3.6.1               
- [57] tsne_0.1-3                  htmlwidgets_1.5.1          
- [59] httr_1.4.1                  RColorBrewer_1.1-2         
- [61] ellipsis_0.3.1              Seurat_3.1.5               
- [63] ica_1.0-2                   pkgconfig_2.0.3            
- [65] R.methodsS3_1.8.0           uwot_0.1.8                 
- [67] dbplyr_1.4.2                locfit_1.5-9.4             
- [69] tidyselect_1.1.0            rlang_0.4.6                
- [71] reshape2_1.4.4              munsell_0.5.0              
- [73] cellranger_1.1.0            tools_3.6.1                
- [75] cli_2.0.2                   generics_0.0.2             
- [77] broom_0.5.5                 ggridges_0.5.2             
- [79] evaluate_0.14               fs_1.4.1                   
- [81] fitdistrplus_1.1-1          RANN_2.6.1                 
- [83] pbapply_1.4-2               future_1.17.0              
- [85] nlme_3.1-145                R.oo_1.23.0                
- [87] xml2_1.3.1                  compiler_3.6.1             
- [89] rstudioapi_0.11             plotly_4.9.2.1             
- [91] png_0.1-7                   reprex_0.3.0               
- [93] stringi_1.4.6               lattice_0.20-41            
- [95] IRdisplay_0.7.0             Matrix_1.2-18              
- [97] vctrs_0.3.0                 pillar_1.4.4               
- [99] lifecycle_0.2.0             lmtest_0.9-37              
-[101] RcppAnnoy_0.0.16            data.table_1.12.8          
-[103] cowplot_1.0.0               bitops_1.0-6               
-[105] irlba_2.3.3                 patchwork_1.0.0            
-[107] GenomicRanges_1.38.0        R6_2.4.1                   
-[109] KernSmooth_2.23-16          gridExtra_2.3              
-[111] IRanges_2.20.2              codetools_0.2-16           
-[113] MASS_7.3-51.5               assertthat_0.2.1           
-[115] rhdf5_2.30.1                SummarizedExperiment_1.16.1
-[117] rjson_0.2.20                withr_2.2.0                
-[119] sctransform_0.2.1           S4Vectors_0.24.4           
-[121] GenomeInfoDbData_1.2.2      parallel_3.6.1             
-[123] hms_0.5.3                   grid_3.6.1                 
-[125] IRkernel_1.1                Rtsne_0.15                 
-[127] pbdZMQ_0.3-3                Biobase_2.46.0             
-[129] lubridate_1.7.8             base64enc_0.1-3            </pre>
+ [25] blob_1.2.1                  rvest_0.3.5                
+ [27] rappdirs_0.3.1              ggrepel_0.8.2              
+ [29] haven_2.3.1                 crayon_1.3.4               
+ [31] RCurl_1.98-1.2              jsonlite_1.6.1             
+ [33] survival_3.1-12             zoo_1.8-8                  
+ [35] ape_5.4                     glue_1.4.1                 
+ [37] gtable_0.3.0                zlibbioc_1.32.0            
+ [39] XVector_0.26.0              R2HTML_2.3.2               
+ [41] leiden_0.3.3                DelayedArray_0.12.3        
+ [43] DropletUtils_1.6.1          Rhdf5lib_1.8.0             
+ [45] future.apply_1.5.0          SingleCellExperiment_1.8.0 
+ [47] BiocGenerics_0.32.0         HDF5Array_1.14.4           
+ [49] scales_1.1.1                DBI_1.1.0                  
+ [51] edgeR_3.28.1                Rcpp_1.0.4.6               
+ [53] viridisLite_0.3.0           reticulate_1.16            
+ [55] dqrng_0.2.1                 rsvd_1.0.3                 
+ [57] tsne_0.1-3                  stats4_3.6.1               
+ [59] htmlwidgets_1.5.1           httr_1.4.1                 
+ [61] RColorBrewer_1.1-2          ellipsis_0.3.1             
+ [63] Seurat_3.1.5                ica_1.0-2                  
+ [65] pkgconfig_2.0.3             R.methodsS3_1.8.0          
+ [67] uwot_0.1.8                  dbplyr_1.4.4               
+ [69] locfit_1.5-9.4              tidyselect_1.1.0           
+ [71] rlang_0.4.6                 reshape2_1.4.4             
+ [73] munsell_0.5.0               cellranger_1.1.0           
+ [75] tools_3.6.1                 cli_2.0.2                  
+ [77] generics_0.0.2              broom_0.5.6                
+ [79] ggridges_0.5.2              evaluate_0.14              
+ [81] fs_1.4.1                    fitdistrplus_1.1-1         
+ [83] RANN_2.6.1                  pbapply_1.4-2              
+ [85] future_1.17.0               nlme_3.1-148               
+ [87] R.oo_1.23.0                 xml2_1.3.2                 
+ [89] compiler_3.6.1              rstudioapi_0.11            
+ [91] plotly_4.9.2.1              png_0.1-7                  
+ [93] reprex_0.3.0                stringi_1.4.6              
+ [95] lattice_0.20-41             IRdisplay_0.7.0            
+ [97] Matrix_1.2-18               vctrs_0.3.1                
+ [99] pillar_1.4.4                lifecycle_0.2.0            
+[101] lmtest_0.9-37               RcppAnnoy_0.0.16           
+[103] data.table_1.12.8           cowplot_1.0.0              
+[105] bitops_1.0-6                irlba_2.3.3                
+[107] patchwork_1.0.0             GenomicRanges_1.38.0       
+[109] R6_2.4.1                    gridExtra_2.3              
+[111] KernSmooth_2.23-17          IRanges_2.20.2             
+[113] codetools_0.2-16            MASS_7.3-51.6              
+[115] assertthat_0.2.1            rhdf5_2.30.1               
+[117] SummarizedExperiment_1.16.1 rjson_0.2.20               
+[119] withr_2.2.0                 sctransform_0.2.1          
+[121] S4Vectors_0.24.4            GenomeInfoDbData_1.2.2     
+[123] parallel_3.6.1              hms_0.5.3                  
+[125] grid_3.6.1                  IRkernel_1.1               
+[127] Rtsne_0.15                  pbdZMQ_0.3-3               
+[129] Biobase_2.46.0              lubridate_1.7.9            
+[131] base64enc_0.1-3            </pre>
 </div>
 
 </div>
@@ -13260,7 +13274,7 @@ loaded via a namespace (and not attached):
 <span class="n">bscs</span><span class="o">$</span><span class="n">target_cells</span> <span class="o">&lt;-</span> <span class="nf">prettyNum</span><span class="p">(</span><span class="n">bscs</span><span class="o">$</span><span class="n">target_cells</span><span class="p">,</span> <span class="n">big.mark</span> <span class="o">=</span> <span class="s">&#39;,&#39;</span><span class="p">)</span>
 <span class="n">bscs</span> <span class="o">&lt;-</span> <span class="nf">t</span><span class="p">(</span><span class="n">bscs</span><span class="p">)</span>
 <span class="n">sample.stats</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">stat</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;Sample&#39;</span><span class="p">,</span><span class="s">&#39;Name&#39;</span><span class="p">,</span><span class="s">&#39;Source&#39;</span><span class="p">,</span><span class="s">&#39;Genotype&#39;</span><span class="p">,</span><span class="s">&#39;Transgene&#39;</span><span class="p">,</span><span class="s">&#39;Treatment&#39;</span><span class="p">,</span><span class="s">&#39;Age&#39;</span><span class="p">,</span><span class="s">&#39;Timepoint&#39;</span><span class="p">,</span><span class="s">&#39;Rep&#39;</span><span class="p">,</span><span class="s">&#39;Target Cells&#39;</span><span class="p">,</span><span class="s">&#39;Date&#39;</span><span class="p">,</span><span class="s">&#39;Seq Run&#39;</span><span class="p">),</span> 
-                    <span class="n">value</span> <span class="o">=</span> <span class="n">bscs[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span><span class="p">)</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">bscs</span><span class="p">[,</span><span class="m">1</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -13326,315 +13340,13 @@ loaded via a namespace (and not attached):
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># Run copilot, please notice that do.annotation only supports root of Arabidopsis thaliana and Oryza sativa </span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Run copilot, please notice that do.annotation only supports root of Arabidopsis thaliana </span>
 <span class="nf">copilot</span><span class="p">(</span><span class="n">sample.name</span> <span class="o">=</span> <span class="s">&quot;col0&quot;</span><span class="p">,</span> <span class="n">species.name</span> <span class="o">=</span> <span class="s">&quot;Arabidopsis thaliana&quot;</span><span class="p">,</span> <span class="n">transcriptome.name</span> <span class="o">=</span> <span class="s">&quot;TAIR10&quot;</span><span class="p">,</span> <span class="n">sample.stats</span> <span class="o">=</span> <span class="n">sample.stats</span><span class="p">,</span> <span class="n">mt.pattern</span> <span class="o">=</span> <span class="s">&quot;ATMG&quot;</span><span class="p">,</span> 
         <span class="n">mt.threshold</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">cp.pattern</span> <span class="o">=</span> <span class="s">&quot;ATCG&quot;</span><span class="p">,</span> <span class="n">remove.doublet</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">do.seurat</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">do.annotation</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">unwanted.genes</span> <span class="o">=</span> <span class="n">pp.genes</span><span class="p">,</span> <span class="n">dir_to_color_scheme</span> <span class="o">=</span> <span class="s">&quot;./supp_data/color_scheme_at.RData&quot;</span><span class="p">,</span> 
         <span class="n">dir_to_bulk</span> <span class="o">=</span> <span class="s">&quot;./supp_data/Root_bulk_arabidopsis_curated.RD&quot;</span><span class="p">,</span> <span class="n">min.UMI.low.quality</span> <span class="o">=</span> <span class="m">100</span><span class="p">,</span> <span class="n">min.UMI.high.quality</span> <span class="o">=</span> <span class="m">300</span><span class="p">)</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>
-Attaching package: ‘Matrix’
-
-
-The following objects are masked from ‘package:tidyr’:
-
-    expand, pack, unpack
-
-
-Loading required package: SingleCellExperiment
-
-Loading required package: SummarizedExperiment
-
-Loading required package: GenomicRanges
-
-Loading required package: stats4
-
-Loading required package: BiocGenerics
-
-Loading required package: parallel
-
-
-Attaching package: ‘BiocGenerics’
-
-
-The following objects are masked from ‘package:parallel’:
-
-    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-    clusterExport, clusterMap, parApply, parCapply, parLapply,
-    parLapplyLB, parRapply, parSapply, parSapplyLB
-
-
-The following object is masked from ‘package:Matrix’:
-
-    which
-
-
-The following objects are masked from ‘package:dplyr’:
-
-    combine, intersect, setdiff, union
-
-
-The following objects are masked from ‘package:stats’:
-
-    IQR, mad, sd, var, xtabs
-
-
-The following objects are masked from ‘package:base’:
-
-    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
-    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
-    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
-    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
-    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
-    union, unique, unsplit, which, which.max, which.min
-
-
-Loading required package: S4Vectors
-
-
-Attaching package: ‘S4Vectors’
-
-
-The following object is masked from ‘package:Matrix’:
-
-    expand
-
-
-The following objects are masked from ‘package:dplyr’:
-
-    first, rename
-
-
-The following object is masked from ‘package:tidyr’:
-
-    expand
-
-
-The following object is masked from ‘package:base’:
-
-    expand.grid
-
-
-Loading required package: IRanges
-
-
-Attaching package: ‘IRanges’
-
-
-The following objects are masked from ‘package:dplyr’:
-
-    collapse, desc, slice
-
-
-The following object is masked from ‘package:purrr’:
-
-    reduce
-
-
-Loading required package: GenomeInfoDb
-
-Loading required package: Biobase
-
-Welcome to Bioconductor
-
-    Vignettes contain introductory material; view with
-    &#39;browseVignettes()&#39;. To cite Bioconductor, see
-    &#39;citation(&#34;Biobase&#34;)&#39;, and for packages &#39;citation(&#34;pkgname&#34;)&#39;.
-
-
-Loading required package: DelayedArray
-
-Loading required package: matrixStats
-
-
-Attaching package: ‘matrixStats’
-
-
-The following objects are masked from ‘package:Biobase’:
-
-    anyMissing, rowMedians
-
-
-The following object is masked from ‘package:dplyr’:
-
-    count
-
-
-Loading required package: BiocParallel
-
-
-Attaching package: ‘DelayedArray’
-
-
-The following objects are masked from ‘package:matrixStats’:
-
-    colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges
-
-
-The following object is masked from ‘package:purrr’:
-
-    simplify
-
-
-The following objects are masked from ‘package:base’:
-
-    aperm, apply, rowsum
-
-
-
-Attaching package: ‘SummarizedExperiment’
-
-
-The following object is masked from ‘package:Seurat’:
-
-    Assays
-
-
-
-Attaching package: ‘scales’
-
-
-The following object is masked from ‘package:purrr’:
-
-    discard
-
-
-The following object is masked from ‘package:readr’:
-
-    col_factor
-
-
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[1] &#34;threshold cell number: 4814&#34;
-[1] &#34;removed cells: 4814&#34;
-[1] &#34;iteration: 1&#34;
-[1] &#34;removed cells: 1032&#34;
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Iteration finished
-
-Warning message:
-“Keys should be one or more alphanumeric characters followed by an underscore, setting key from spliced_rna_ to splicedrna_”
-Warning message:
-“Keys should be one or more alphanumeric characters followed by an underscore, setting key from unspliced_rna_ to unsplicedrna_”
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[1] &#34;Creating 2260 artificial doublets...&#34;
-[1] &#34;Creating Seurat object...&#34;
-[1] &#34;Running SCTransform...&#34;
-  |======================================================================| 100%
-  |======================================================================| 100%
-  |======================================================================| 100%
-[1] &#34;Running PCA...&#34;
-[1] &#34;Calculating PC distance matrix...&#34;
-[1] &#34;Computing pANN...&#34;
-[1] &#34;Classifying doublets..&#34;
-Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
-
-Number of nodes: 6433
-Number of edges: 175184
-
-Running smart local moving algorithm...
-Maximum modularity in 10 random starts: 0.9318
-Number of communities: 18
-Elapsed time: 1 seconds
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>
-Attaching package: ‘gridExtra’
-
-
-The following object is masked from ‘package:Biobase’:
-
-    combine
-
-
-The following object is masked from ‘package:BiocGenerics’:
-
-    combine
-
-
-The following object is masked from ‘package:dplyr’:
-
-    combine
-
-
-Warning message:
-“Using `as.character()` on a quosure is deprecated as of rlang 0.3.0.
-Please use `as_label()` or `as_name()` instead.
-<span class="ansi-black-intense-fg">This warning is displayed once per session.</span>”
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>TableGrob (5 x 2) &#34;arrange&#34;: 9 grobs
-  z     cells    name           grob
-1 1 (1-1,1-1) arrange gtable[layout]
-2 2 (1-1,2-2) arrange gtable[layout]
-3 3 (2-2,1-1) arrange gtable[layout]
-4 4 (2-2,2-2) arrange gtable[layout]
-5 5 (3-3,1-1) arrange gtable[layout]
-6 6 (3-3,2-2) arrange gtable[layout]
-7 7 (4-4,1-1) arrange gtable[layout]
-8 8 (4-4,2-2) arrange gtable[layout]
-9 9 (5-5,1-1) arrange gtable[layout]
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13732,19 +13444,6 @@ x y position of the legend on UMI histogram plot (numeric vector of length 2). D
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
     </div>
   </div>

@@ -13081,6 +13081,15 @@ div#notebook {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Working-directory-should-contain-root-atlas-Seurat-object,-which-is-aviable-on-GEO-under-record-GSE152766:">Working directory should contain root atlas Seurat object, which is aviable on GEO under record GSE152766:<a class="anchor-link" href="#Working-directory-should-contain-root-atlas-Seurat-object,-which-is-aviable-on-GEO-under-record-GSE152766:">&#182;</a></h4>
+<pre><code>Root_Atlas.rds (or get it by running through notebook 2)</code></pre>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
@@ -13297,7 +13306,7 @@ Elapsed time: 41 seconds
 <span class="c1"># Pool (average) expression values of each cluster</span>
 <span class="n">pooled</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">afm</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
 <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">0</span><span class="o">:</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="nf">unique</span><span class="p">(</span><span class="n">rc.integrated</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">seurat_clusters</span><span class="p">))</span><span class="m">-1</span><span class="p">))</span> <span class="p">{</span>
-<span class="n">m</span> <span class="o">&lt;-</span> <span class="n">afm[</span><span class="p">,</span><span class="nf">which</span><span class="p">(</span><span class="n">rc.integrated</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">seurat_clusters</span><span class="o">==</span><span class="n">i</span><span class="p">)</span><span class="n">]</span>
+<span class="n">m</span> <span class="o">&lt;-</span> <span class="n">afm</span><span class="p">[,</span><span class="nf">which</span><span class="p">(</span><span class="n">rc.integrated</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">seurat_clusters</span><span class="o">==</span><span class="n">i</span><span class="p">)]</span>
 <span class="n">pooled</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="nf">rowSums</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="nf">ncol</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
 <span class="p">}</span>
 </pre></div>
@@ -13313,7 +13322,7 @@ Elapsed time: 41 seconds
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Manually make the expression value non-negative</span>
-<span class="n">pooled</span><span class="nf">[which</span><span class="p">(</span><span class="n">pooled</span> <span class="o">&lt;</span> <span class="m">0</span><span class="p">)</span><span class="n">]</span><span class="o">=</span><span class="m">0</span>
+<span class="n">pooled</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">pooled</span> <span class="o">&lt;</span> <span class="m">0</span><span class="p">)]</span><span class="o">=</span><span class="m">0</span>
 </pre></div>
 
     </div>
@@ -13411,7 +13420,7 @@ Done
 <span class="n">new.cluster.ids</span> <span class="o">&lt;-</span> <span class="n">results</span><span class="o">$</span><span class="n">CytoTRACE</span>
 <span class="nf">names</span><span class="p">(</span><span class="n">new.cluster.ids</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">levels</span><span class="p">(</span><span class="n">rc.integrated</span><span class="p">)</span>
 <span class="n">rc.integrated</span> <span class="o">&lt;-</span> <span class="nf">RenameIdents</span><span class="p">(</span><span class="n">object</span> <span class="o">=</span> <span class="n">rc.integrated</span><span class="p">,</span> <span class="n">new.cluster.ids</span><span class="p">)</span>
-<span class="n">rc.integrated</span><span class="o">$</span><span class="n">CytoTRACE</span> <span class="o">&lt;-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="nf">levels</span><span class="p">(</span><span class="n">rc.integrated</span><span class="o">@</span><span class="n">active.ident</span><span class="p">)</span><span class="n">[rc.integrated</span><span class="o">@</span><span class="n">active.ident]</span><span class="p">)</span>
+<span class="n">rc.integrated</span><span class="o">$</span><span class="n">CytoTRACE</span> <span class="o">&lt;-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="nf">levels</span><span class="p">(</span><span class="n">rc.integrated</span><span class="o">@</span><span class="n">active.ident</span><span class="p">)[</span><span class="n">rc.integrated</span><span class="o">@</span><span class="n">active.ident</span><span class="p">])</span>
 </pre></div>
 
     </div>

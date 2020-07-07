@@ -13084,7 +13084,9 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="This-is-in-Python">This is in Python<a class="anchor-link" href="#This-is-in-Python">&#182;</a></h2>
+<h4 id="Note-that-we-are-in-Python">Note that we are in Python<a class="anchor-link" href="#Note-that-we-are-in-Python">&#182;</a></h4><h4 id="Working-directory-must-contain-subdirectories,supp_data">Working directory must contain subdirectories,supp_data<a class="anchor-link" href="#Working-directory-must-contain-subdirectories,supp_data">&#182;</a></h4><h4 id="supp_data/-should-contain-the-file:">supp_data/ should contain the file:<a class="anchor-link" href="#supp_data/-should-contain-the-file:">&#182;</a></h4>
+<pre><code>Ground_Tissue_Atlas_scVelo_input.RData (get it by running through notebook 7)</code></pre>
+
 </div>
 </div>
 </div>
@@ -13136,27 +13138,27 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">rcParams</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">colors</span>
-<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="k">import</span> <span class="n">ListedColormap</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sb</span>
-<span class="kn">from</span> <span class="nn">gprofiler</span> <span class="k">import</span> <span class="n">GProfiler</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">sparse</span>
+<span class="kn">from</span> <span class="nn">gprofiler</span> <span class="kn">import</span> <span class="n">GProfiler</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
 <span class="kn">import</span> <span class="nn">scvelo</span> <span class="k">as</span> <span class="nn">scv</span>
 <span class="n">scv</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">print_version</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">rpy2.robjects.packages</span> <span class="k">import</span> <span class="n">importr</span>
+<span class="kn">from</span> <span class="nn">rpy2.robjects.packages</span> <span class="kn">import</span> <span class="n">importr</span>
 <span class="n">seuratLib</span> <span class="o">=</span> <span class="n">importr</span><span class="p">(</span><span class="s1">&#39;Seurat&#39;</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">rpy2.rinterface_lib.callbacks</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="kn">from</span> <span class="nn">rpy2.robjects</span> <span class="k">import</span> <span class="n">pandas2ri</span>
+<span class="kn">from</span> <span class="nn">rpy2.robjects</span> <span class="kn">import</span> <span class="n">pandas2ri</span>
 <span class="kn">import</span> <span class="nn">anndata2ri</span>
 
 <span class="kn">import</span> <span class="nn">h5py</span>
 <span class="kn">import</span> <span class="nn">anndata</span>
-<span class="kn">from</span> <span class="nn">anndata</span> <span class="k">import</span> <span class="n">read_h5ad</span>
+<span class="kn">from</span> <span class="nn">anndata</span> <span class="kn">import</span> <span class="n">read_h5ad</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 
@@ -13602,7 +13604,7 @@ height=399
 <span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;./supp_data/Ground_Tissue_Atlas_latent_time.txt&quot;</span>  <span class="c1"># name to save file under</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># open the file as f</span>
     <span class="k">for</span> <span class="n">time</span> <span class="ow">in</span> <span class="n">seu</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;latent_time&#39;</span><span class="p">]:</span>  <span class="c1"># iterate over cells</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{time}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># write each cell on a new line</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">time</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># write each cell on a new line</span>
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 

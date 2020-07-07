@@ -13081,6 +13081,17 @@ div#notebook {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Working-directory-should-contain-root-atlas-Seurat-object,-which-is-aviable-on-GEO-under-record-GSE152766:">Working directory should contain root atlas Seurat object, which is aviable on GEO under record GSE152766:<a class="anchor-link" href="#Working-directory-should-contain-root-atlas-Seurat-object,-which-is-aviable-on-GEO-under-record-GSE152766:">&#182;</a></h4>
+<pre><code>Root_Atlas.rds (or get it by running through notebook 2, 3, 4, 5, 6, 7, 8 &amp; 9)
+
+</code></pre>
+<h4 id="Note-we-put-all-the-Seurat-objects-of-sample-under-subdirectory-COPLILOT_RDS/">Note we put all the Seurat objects of sample under subdirectory COPLILOT_RDS/<a class="anchor-link" href="#Note-we-put-all-the-Seurat-objects-of-sample-under-subdirectory-COPLILOT_RDS/">&#182;</a></h4>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
@@ -13277,7 +13288,7 @@ loaded via a namespace (and not attached):
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Run label transfer</span>
 <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">sample.list</span><span class="p">)){</span>
- <span class="nf">label_transfer_init</span><span class="p">(</span><span class="n">sample.list[i]</span><span class="p">)</span>
+ <span class="nf">label_transfer_init</span><span class="p">(</span><span class="n">sample.list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 <span class="p">}</span>
 </pre></div>
 
