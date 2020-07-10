@@ -12,7 +12,7 @@ Shahan & Hsu et al. 2020. A single cell _Arabidopsis_ root atlas reveals develop
 
 2. If user wants to calculate RNA velocity or infer trajectory based on splicing dynamics in downstream analysis, then COPILOT along with scKB can help you since together they produce spliced and unspliced quality-filtered count matrices. 
 
-3. If user want to use specific sets of genes that represent the signal of noise or low quality cells for cell-filtering, COPILOT offers such function.
+3. If user wants to use specific sets of genes that represent the signal of noise or low quality cells for cell-filtering, COPILOT offers such function.
 
 ## Dependencies
 
@@ -71,9 +71,10 @@ devtools::install_github('Hsu-Che-Wei/COPILOT')
 
 ![COPILOT_Summary](/images/COPILOT_Summary.png)
 
-Please check out an example of COPILOT summary file in the folder named "COPILOT_summary_file".
+Please check out examples of COPILOT summary file [here](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/COPILOT_summary_file/COPILOT_summary_files.pdf)
 
-It is easier to check out the files by cloning the whole repository to local directory. 
+Or check out the folder named "COPILOT_summary_file".
+
 
 ## Usage
 
