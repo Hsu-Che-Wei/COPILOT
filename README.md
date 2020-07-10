@@ -37,9 +37,7 @@ devtools::install_github('Hsu-Che-Wei/COPILOT')
 
 ![COPILOT_Summary](/images/COPILOT_Summary.png)
 
-Please check out examples of COPILOT summary file [here](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/COPILOT_summary_file/COPILOT_summary_files.pdf)
-
-,or check out the folder named "COPILOT_summary_file".
+Please check out examples of COPILOT summary file [here](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/COPILOT_summary_file/COPILOT_summary_files.pdf), or check out the folder named "COPILOT_summary_file".
 
 
 ## Usage
