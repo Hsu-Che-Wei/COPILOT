@@ -27,7 +27,7 @@ Python modules: umap-learn, leidenalg (optional)
 devtools::install_github('Hsu-Che-Wei/COPILOT')
    ```
 
-## Tutorial and Analysis
+## Tutorial
 
 [0-COPILOT_tutorial](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/0-COPILOT_tutorial.ipynb)
 
