@@ -33,7 +33,7 @@ devtools::install_github('Hsu-Che-Wei/COPILOT')
 
 [0-COPILOT_tutorial_toy_data](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/0-COPILOT_tutorial_toy_data.ipynb)
 
-[1-Correlation_Based_Annotation](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/1-Correlation_Based_Annotation.ipynb)
+[1-Basic_Seurat_Analysis_&_Correlation_Based_Annotation](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/1-Correlation_Based_Annotation.ipynb)
 
 [2-Integration](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/2-Integration.ipynb)
 
