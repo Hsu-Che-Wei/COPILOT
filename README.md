@@ -2,6 +2,10 @@
 
 Single cell RNA-seq preprocessing tool for gene-by-cell matrices of UMI counts. The uitily and summary file offered by this tool is directly comparable to CellRanger 3.1, the tool developed by 10X Genomics. It is recommended to use the raw spliced and unpliced counts matrices produced by scKB pipeline as the input of COPILOT.
 
+## Citation
+
+Shahan & Hsu et al. 2020. A single cell _Arabidopsis_ root atlas reveals developmental trajectories in wild type and cell identity mutants. bioRxiv. doi: https://doi.org/10.1101/2020.06.29.178863
+
 ## Advantages over CellRanger 3.1
 
 1. Since scKB and COPILOT incorporates kallisto, which is a read aligner using peudoalignment, they are about ~ 30 times faster than CellRanger 3.1 in processing time. 
@@ -23,11 +27,45 @@ Python modules: umap-learn, leidenalg (optional)
 devtools::install_github('Hsu-Che-Wei/COPILOT')
    ```
 
-## Tutorial
+## Tutorial and Analysis
 
-Please check out the jupyter notebook named "0-COPILOT_tutorial_toy_data.ipynb" or "0-COPILOT_tutorial_toy_data.html".
+[0-COPILOT_tutorial](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/0-COPILOT_tutorial.ipynb)
 
-It is easier to check out the files by cloning the whole repository to local directory. 
+[0-COPILOT_tutorial_toy_data](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/0-COPILOT_tutorial_toy_data.ipynb)
+
+[1-Correlation_Based_Annotation](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/1-Correlation_Based_Annotation.ipynb)
+
+[2-Integration](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/2-Integration.ipynb)
+
+[3-1-Prepare_Escoring_Input](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/3-1-Prepare_Escoring_Input.ipynb)
+
+[3-2-Prepare_Escoring_Input_2](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/3-2-Prepare_Escoring_Input_2.ipynb)
+
+[3-3-Find_Markers_By_Escoring](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/3-3-Find_Markers_By_Escoring.ipynb)
+
+[3-4-Marker_Annotation_By_Escoring](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/3-4-Marker_Annotation_By_Escoring.ipynb)
+
+[4-ICI_Computaion](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/4-ICI_Computaion.ipynb)
+
+[5-CytoTRACE](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/5-CytoTRACE.ipynb)
+
+[6-Finalize_Annotation](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/6-Finalize_Annotation.ipynb)
+
+[7-Extract_Tissue_Lineage](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/7-Extract_Tissue_Lineage.ipynb)
+
+[8-scVelo_Latent_Time](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/8-scVelo_Latent_Time.ipynb)
+
+[9-Consensus_Time](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/9-Consensus_Time.ipynb)
+
+[10-Label_Transfer](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/10-Label_Transfer.ipynb)
+
+[11-1-Atlas_FindMarkers](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/11-1-Atlas_FindMarkers.ipynb)
+
+[11-2-Endo_Cortex_Heatmap](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/11-2-Endo_Cortex_Heatmap.ipynb)
+
+[11-3-WT_SCR_SHR_Heatmap](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/11-3-WT_SCR_SHR_Heatmap.ipynb)
+
+[12-Differential_Abundance_Analysis](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/12-Differential_Abundance_Analysis.ipynb)
 
 ## COPILOT summary file
 
@@ -113,9 +151,6 @@ For users that have scRNA-seq data of _Arabidopsis thaliana_ root, and wish to p
 
 In the folder "jupyter_notebook", one can find codes demonstrating how some typical down-stream analysis of scRNA-seq were performed on COPILOT-preprocessed data. 
 
-## Citation
-
-Shahan & Hsu et al. 2020. A single cell _Arabidopsis_ root atlas reveals developmental trajectories in wild type and cell identity mutants. bioRxiv. doi: https://doi.org/10.1101/2020.06.29.178863
 
 
 
