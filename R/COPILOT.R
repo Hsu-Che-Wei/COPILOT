@@ -223,16 +223,16 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
   uf <- uf[,ssidx]
 
 
-  #kb stats
-  if (is.null(total.mtx)){
-    kb_stats <- c(fromJSON(file = paste0("./",sample.name,"/inspect.json")), fromJSON(file = paste0("./",sample.name,"/run_info.json"))) # load run info
-    tech <- tech <- strsplit(kb_stats$call, '\\s')[[1]][8]
-    seq_stats <- data.frame(stat = c('Number of Reads Processed', 'Reads Pseudoaligned', 'Reads on Whitelist', 'Total UMI Counts','Sequencing Technology', 'Species', 'Transcriptome'),
-                            value = prettyNum(c(kb_stats$n_processed, paste0(kb_stats$p_pseudoaligned, ' %'), paste0(round(kb_stats$percentageReadsOnWhitelist,2),' %'), sum(afr), tech, species.name, transcriptome.name), big.mark = ','))
-  } else {
-    seq_stats <- data.frame(stat = c('Number of Reads Processed', 'Reads Pseudoaligned', 'Reads on Whitelist', 'Total UMI Counts','Sequencing Technology', 'Species', 'Transcriptome'),
-                            value = prettyNum(c(numeric(), numeric(), numeric(), sum(afr), numeric(), species.name, transcriptome.name), big.mark = ','))
-  }
+  # #kb stats
+  # if (is.null(total.mtx)){
+  #   kb_stats <- c(fromJSON(file = paste0("./",sample.name,"/inspect.json")), fromJSON(file = paste0("./",sample.name,"/run_info.json"))) # load run info
+  #   tech <- tech <- strsplit(kb_stats$call, '\\s')[[1]][8]
+  #   seq_stats <- data.frame(stat = c('Number of Reads Processed', 'Reads Pseudoaligned', 'Reads on Whitelist', 'Total UMI Counts','Sequencing Technology', 'Species', 'Transcriptome'),
+  #                           value = prettyNum(c(kb_stats$n_processed, paste0(kb_stats$p_pseudoaligned, ' %'), paste0(round(kb_stats$percentageReadsOnWhitelist,2),' %'), sum(afr), tech, species.name, transcriptome.name), big.mark = ','))
+  # } else {
+  #   seq_stats <- data.frame(stat = c('Number of Reads Processed', 'Reads Pseudoaligned', 'Reads on Whitelist', 'Total UMI Counts','Sequencing Technology', 'Species', 'Transcriptome'),
+  #                           value = prettyNum(c(numeric(), numeric(), numeric(), sum(afr), numeric(), species.name, transcriptome.name), big.mark = ','))
+  # }
 
 
   #cell stats
