@@ -54,7 +54,7 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
   library(DropletUtils)
   library(ggplot2)
   library(scales)
-
+  total.mtx.flag <- !is.null(total.mtx)
   if(is.null(spliced.mtx) && is.null(unspliced.mtx) && is.null(total.mtx)){
     # load raw mtx
     spliced <- readMM(paste0("./",sample.name,"/spliced.mtx"))
@@ -81,7 +81,7 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
     rm(spliced)
     rm(unspliced)
     gc()
-  } else if (!is.null(total.mtx)) {
+  } else if (total.mtx.flag) {
     total.mtx.flag <- T
     afr <- total.mtx
     tot_gene <- Matrix::colSums(afr)
@@ -201,6 +201,7 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
   lncn <- log10(ncn)
   lngn <- log10(ngn)
   pmtn <- (colSums(nf[grep(paste(mt.pattern, collapse = "|"),rownames(nf)),])/ncn)*100 # percent mt for low quality cell
+  rm(nf)
 
   select <- rep(paste("high quality"),length(lnc))
   label_mt <- paste0("percent mt >= ",mt.threshold)
@@ -230,7 +231,8 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
                                                     paste0("low quality (",length(grep("low",select)),")"),
                                                     paste0("percent mt >= ",mt.threshold," (",length(grep("percent",select)),")"),
                                                     paste0("top ",top.percent,"% (",length(grep("top",select)),")")))
-
+  rm(select, nonselect)
+  gc()
   af <- af[,ssidx]
 
   if(keep_spliced) {
@@ -337,6 +339,7 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
     gc()
     DefaultAssay(seu) <- "RNA"
   }
+  rm(af)
   rm(sf)
   rm(uf)
   gc()
