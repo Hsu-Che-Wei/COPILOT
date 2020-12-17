@@ -35,8 +35,11 @@
 #' @import DoubletFinder
 #' @import DropletUtils
 
-copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total.mtx = NULL, filtered.mtx.output.dir = NULL, species.name = "Not Provided", transcriptome.name = "Not Provided", sample.stats = NULL, mt.pattern , mt.threshold = 5, cp.pattern = NULL, top.percent = 1, filtering.ratio = 1, estimate.doublet.rate = TRUE, doublet.rate = NULL, remove.doublet = TRUE,
-                            do.seurat = TRUE, do.annotation = FALSE, unwanted.genes = NULL, HVG = FALSE, HVGN = 200, dir_to_bulk = NULL, dir_to_color_scheme = NULL, clustering_alg = 3, res = 0.5, min.UMI.low.quality = 100, min.UMI.high.quality = 300, legend.position = c(0.8,0.8)){
+copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total.mtx = NULL, filtered.mtx.output.dir = NULL, species.name = "Not Provided",
+                    transcriptome.name = "Not Provided", sample.stats = NULL, mt.pattern , mt.threshold = 5, cp.pattern = NULL, top.percent = 1,
+                    filtering.ratio = 1, estimate.doublet.rate = TRUE, doublet.rate = NULL, remove.doublet = TRUE,
+                    do.seurat = TRUE, do.annotation = FALSE, unwanted.genes = NULL, HVG = FALSE, HVGN = 200, dir_to_bulk = NULL, keep_spliced=F, keep_unspliced=F,
+                    dir_to_color_scheme = NULL, clustering_alg = 3, res = 0.5, min.UMI.low.quality = 100, min.UMI.high.quality = 300, legend.position = c(0.8,0.8)){
   if (missing(sample.name)) {
     stop('Error! Necessary argument "sample.name" is missing.')
   }
@@ -75,13 +78,19 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
     sf <- spliced[genes_use, bcs_use]
     uf <- unspliced[genes_use, bcs_use]
     afr <- sf+uf
+    rm(spliced)
+    rm(unspliced)
+    gc()
   } else if (!is.null(total.mtx)) {
+    total.mtx.flag <- T
     afr <- total.mtx
     tot_gene <- Matrix::colSums(afr)
     tot_genes <- Matrix::rowSums(afr)
     bcs_use <- colnames(afr)[tot_gene > min.UMI.low.quality]
     genes_use <- rownames(afr)[tot_genes > 0]
     afr <- afr[genes_use, bcs_use]
+    rm(total.mtx)
+    gc()
   } else {
     spliced <- spliced.mtx
     unspliced <- unspliced.mtx
@@ -97,6 +106,9 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
     sf <- spliced[genes_use, bcs_use]
     uf <- unspliced[genes_use, bcs_use]
     afr <- sf+uf
+    rm(spliced)
+    rm(unspliced)
+    gc()
   }
 
   nc <- colSums(afr)
@@ -175,6 +187,7 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
   }
   sf <- sf[,colnames(af)]
   uf <- uf[,colnames(af)]
+  gc()
 
   message("Iteration finished")
   #prepare data.frame for ggplot2
@@ -219,20 +232,22 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
                                                     paste0("top ",top.percent,"% (",length(grep("top",select)),")")))
 
   af <- af[,ssidx]
-  sf <- sf[,ssidx]
-  uf <- uf[,ssidx]
+
+  if(keep_spliced) {
+      sf <- sf[,ssidx]
+  } else {
+      rm(sf)
+      gc()
+  }
+  if(keep_unspliced) {
+    uf <- uf[,ssidx]
+  } else {
+      rm(uf)
+      gc()
+  }
 
 
-  # #kb stats
-  # if (is.null(total.mtx)){
-  #   kb_stats <- c(fromJSON(file = paste0("./",sample.name,"/inspect.json")), fromJSON(file = paste0("./",sample.name,"/run_info.json"))) # load run info
-  #   tech <- tech <- strsplit(kb_stats$call, '\\s')[[1]][8]
-  #   seq_stats <- data.frame(stat = c('Number of Reads Processed', 'Reads Pseudoaligned', 'Reads on Whitelist', 'Total UMI Counts','Sequencing Technology', 'Species', 'Transcriptome'),
-  #                           value = prettyNum(c(kb_stats$n_processed, paste0(kb_stats$p_pseudoaligned, ' %'), paste0(round(kb_stats$percentageReadsOnWhitelist,2),' %'), sum(afr), tech, species.name, transcriptome.name), big.mark = ','))
-  # } else {
-  #   seq_stats <- data.frame(stat = c('Number of Reads Processed', 'Reads Pseudoaligned', 'Reads on Whitelist', 'Total UMI Counts','Sequencing Technology', 'Species', 'Transcriptome'),
-  #                           value = prettyNum(c(numeric(), numeric(), numeric(), sum(afr), numeric(), species.name, transcriptome.name), big.mark = ','))
-  # }
+  message("Quality check")
 
 
   #cell stats
@@ -271,6 +286,8 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
                              value = prettyNum(c(ncol(af), paste0(p_cnts_high,' %'), sum(af), paste0(p_cnts_in_cells,' %'), med_cnts_cell,
                                                  med_genes_cell, tot_genes_detected, paste0(p_cnts_dying,' %')), big.mark = ','))
   }
+  rm(afr)
+  gc()
 
   #parameters
   if (remove.doublet){
@@ -292,7 +309,7 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
   }
 
 
-
+  message("Ploting...")
   #Plots
   bc_rank_plot(lnc_gg=lnc_gg, save = paste0("./",sample.name,"/bc_rank_plot.png"))
   UMI_hist_plot(lnc_gg=lnc_gg, save = paste0("./",sample.name,"/UMI_hist_plot.png"), legend.position=legend.position)
@@ -302,162 +319,107 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
     do.annotation <- FALSE
   }
 
+  message("Creating Seurat objects")
+
   #do.analysis or not
-  if (!do.seurat){
-    #Output html
-    print_HTML_no_analysis(parameters = parameters, cell_stats = cell_stats, seq_stats = seq_stats, sample_stats = sample.stats, dir = paste0("./",sample.name), sample.name = sample.name)
-    #Save filtered raw counts
-    if (is.null(filtered.mtx.output.dir)){
-      write10xCounts(paste0("./",sample.name,'/total_counts_filtered'), af, overwrite=T)
-      if (is.null(total.mtx)){
-        write10xCounts(paste0("./",sample.name,'/spliced_counts_filtered'), sf, overwrite=T)
-        write10xCounts(paste0("./",sample.name,'/unspliced_counts_filtered'), uf, overwrite=T)
-      }
-    } else {
-      write10xCounts(paste0(filtered.mtx.output.dir,'/spliced_counts_filtered'), af, overwrite=T)
-      if (is.null(total.mtx)){
-        write10xCounts(paste0("./",sample.name,'/spliced_counts_filtered'), sf, overwrite=T)
-        write10xCounts(paste0("./",sample.name,'/unspliced_counts_filtered'), uf, overwrite=T)
-      }
-    }
-
+  if (total.mtx.flag){
+    #Create Seurat Object
+    seu <- suppressWarnings(CreateSeuratObject(counts = af, assay = "RNA", project = sample.name))
   } else {
-    if (!is.null(total.mtx)){
-      #Create Seurat Object
-      seu <- suppressWarnings(CreateSeuratObject(counts = af, assay = "RNA", project = sample.name))
-    } else {
-      #Create Seurat Objects
-      seu <- suppressWarnings(CreateSeuratObject(counts = af, assay = "RNA", project = sample.name))
+    #Create Seurat Objects
+    seu <- suppressWarnings(CreateSeuratObject(counts = af, assay = "RNA", project = sample.name))
+    if(keep_spliced){
       seu[["spliced_RNA"]] <- CreateAssayObject(sf)
+    }
+    if(keep_unspliced){
       seu[["unspliced_RNA"]] <- CreateAssayObject(uf)
-      DefaultAssay(seu) <- "RNA"
     }
+    gc()
+    DefaultAssay(seu) <- "RNA"
+  }
+  rm(sf)
+  rm(uf)
+  gc()
 
-    seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = paste(mt.pattern, collapse = "|"))
-    seu[["percent.cp"]] <- PercentageFeatureSet(seu, pattern = paste(cp.pattern, collapse = "|"))
+  seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = paste(mt.pattern, collapse = "|"))
+  seu[["percent.cp"]] <- PercentageFeatureSet(seu, pattern = paste(cp.pattern, collapse = "|"))
 
-    # Whether to apply highly variable gene selection
-    if (HVG) {
-      vfn <- HVGN
-    } else {
-      vfn <- nrow(seu)
-    }
+  # Whether to apply highly variable gene selection
+  if (HVG) {
+    vfn <- HVGN
+  } else {
+    vfn <- nrow(seu)
+  }
 
+  # Normalization using SCTransform
+  suppressWarnings(seu <- SCTransform(seu, variable.features.n = vfn, assay = "RNA", new.assay.name = "SCT", verbose = FALSE) )
+  #suppressWarnings(seu <- SCTransform(seu, variable.features.n = vfn, assay = "spliced_RNA", new.assay.name = "spliced_SCT", verbose = FALSE))
+  #suppressWarnings(seu <- SCTransform(seu, variable.features.n = vfn, assay = "unspliced_RNA", new.assay.name = "unspliced_SCT", verbose = FALSE))
+
+  # Doublet estimation
+  DefaultAssay(seu) <- "SCT"
+
+  if(!is.null(mt.pattern) && !is.null(cp.pattern) && !is.null(unwanted.genes)){
+    use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),grep(paste(cp.pattern, collapse = "|"),rownames(seu)),sort(match(unwanted.genes, rownames(seu))))]
+  } else if (!is.null(mt.pattern) && !is.null(cp.pattern) && is.null(unwanted.genes)){
+    use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),grep(paste(cp.pattern, collapse = "|"),rownames(seu)))]
+  } else if (!is.null(mt.pattern) && is.null(cp.pattern) && !is.null(unwanted.genes)){
+    use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),sort(match(unwanted.genes, rownames(seu))))]
+  } else if (!is.null(mt.pattern) && is.null(cp.pattern) && is.null(unwanted.genes)){
+    use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)))]
+  } else if (is.null(mt.pattern) && is.null(cp.pattern) && !is.null(unwanted.genes)){
+    use.genes <- rownames(seu)[-c(sort(match(unwanted.genes, rownames(seu))))]
+  } else if (is.null(mt.pattern) && !is.null(cp.pattern) && is.null(unwanted.genes)){
+    use.genes <- rownames(seu)[-c(grep(paste(cp.pattern, collapse = "|"),rownames(seu)))]
+  } else if (is.null(mt.pattern) && !is.null(cp.pattern) && !is.null(unwanted.genes)){
+    use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),grep(paste(cp.pattern, collapse = "|"),rownames(seu)))]
+  } else {
+    use.genes <- rownames(seu)
+  }
+
+  seu <- RunPCA(seu, verbose = FALSE, approx = FALSE, npcs = 10, features=use.genes)
+  nExp_poi <- round((doublet.rate/100)*ncol(seu))
+
+  suppressMessages(suppressWarnings(
+    seu <- doubletFinder_v3(seu, PCs = 1:10, pN = 0.25, pK = 0.15, nExp = nExp_poi, reuse.pANN = FALSE, sct = TRUE)
+  ))
+
+  # Doublet removal
+  if (remove.doublet){
+    seu <- subset(seu, cells = colnames(seu)[which(seu@meta.data[,grep("DF.classifications",colnames(seu@meta.data))]=="Singlet")])
     # Normalization using SCTransform
     suppressWarnings(
       seu <- SCTransform(seu, variable.features.n = vfn, assay = "RNA", new.assay.name = "SCT", verbose = FALSE)
     )
-    #suppressWarnings(
-    #seu <- SCTransform(seu, variable.features.n = vfn, assay = "spliced_RNA", new.assay.name = "spliced_SCT", verbose = FALSE)
-    #)
-    #suppressWarnings(
-    #seu <- SCTransform(seu, variable.features.n = vfn, assay = "unspliced_RNA", new.assay.name = "unspliced_SCT", verbose = FALSE)
-    #)
-
-    # Doublet estimation
-    DefaultAssay(seu) <- "SCT"
-
-    if(!is.null(mt.pattern) && !is.null(cp.pattern) && !is.null(unwanted.genes)){
-      use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),grep(paste(cp.pattern, collapse = "|"),rownames(seu)),sort(match(unwanted.genes, rownames(seu))))]
-    } else if (!is.null(mt.pattern) && !is.null(cp.pattern) && is.null(unwanted.genes)){
-      use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),grep(paste(cp.pattern, collapse = "|"),rownames(seu)))]
-    } else if (!is.null(mt.pattern) && is.null(cp.pattern) && !is.null(unwanted.genes)){
-      use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),sort(match(unwanted.genes, rownames(seu))))]
-    } else if (!is.null(mt.pattern) && is.null(cp.pattern) && is.null(unwanted.genes)){
-      use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)))]
-    } else if (is.null(mt.pattern) && is.null(cp.pattern) && !is.null(unwanted.genes)){
-      use.genes <- rownames(seu)[-c(sort(match(unwanted.genes, rownames(seu))))]
-    } else if (is.null(mt.pattern) && !is.null(cp.pattern) && is.null(unwanted.genes)){
-      use.genes <- rownames(seu)[-c(grep(paste(cp.pattern, collapse = "|"),rownames(seu)))]
-    } else if (is.null(mt.pattern) && !is.null(cp.pattern) && !is.null(unwanted.genes)){
-      use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),grep(paste(cp.pattern, collapse = "|"),rownames(seu)))]
-    } else {
-      use.genes <- rownames(seu)
-    }
-
-    seu <- RunPCA(seu, verbose = FALSE, approx = FALSE, npcs = 10, features=use.genes)
-    nExp_poi <- round((doublet.rate/100)*ncol(seu))
-
-    suppressMessages(suppressWarnings(
-      seu <- doubletFinder_v3(seu, PCs = 1:10, pN = 0.25, pK = 0.15, nExp = nExp_poi, reuse.pANN = FALSE, sct = TRUE)
-    ))
-
-    # Doublet removal
-    if (remove.doublet){
-      seu <- subset(seu, cells = colnames(seu)[which(seu@meta.data[,grep("DF.classifications",colnames(seu@meta.data))]=="Singlet")])
-      # Normalization using SCTransform
-      suppressWarnings(
-        seu <- SCTransform(seu, variable.features.n = vfn, assay = "RNA", new.assay.name = "SCT", verbose = FALSE)
-      )
-      suppressWarnings(
-        seu <- SCTransform(seu, variable.features.n = vfn, assay = "spliced_RNA", new.assay.name = "spliced_SCT", verbose = FALSE)
-      )
-      suppressWarnings(
-        seu <- SCTransform(seu, variable.features.n = vfn, assay = "unspliced_RNA", new.assay.name = "unspliced_SCT", verbose = FALSE)
-      )
-    }
-    DefaultAssay(seu) <- "SCT"
-
-    #store misc
-    seu@misc$percent_mt_raw <- list(pmt)
-    seu@misc$log_nCount_raw <- list(lnc_gg)
-    seu@misc$log_nFeature_raw <- list(lng_gg)
-    seu@misc$parameters <- list(parameters)
-    #seu@misc$seq_stats <- list(seq_stats)
-    #seu@misc$cell_stats <- list(cell_stats)
-    #if (!is.null(sample.stats)){
-    #  seu@misc$sample_stats <- list(sample.stats)
-    #}
-
-    if (do.annotation){
-      #Annotation whole transcriptome correlation
-      if (species.name=="Arabidopsis thaliana"){
-        seu <- cor.anno.at(seu = seu, dir_to_bulk = dir_to_bulk, unwanted.genes = unwanted.genes, clustering_alg = clustering_alg, res = res, mt.pattern = mt.pattern, cp.pattern = cp.pattern)
-        #Feature Plot
-        feature_plot_at(seu = seu, res = res, doublet.rate = doublet.rate, dir_to_color_scheme = dir_to_color_scheme, save = paste0("./",sample.name,"/feature_plot.png"))
-        #Output HTML
-        print_HTML(parameters = parameters, cell_stats = cell_stats, seq_stats = seq_stats, sample_stats = sample.stats, dir = paste0("./",sample.name), sample.name = sample.name)
-      } else if (species.name=="Oryza sativa"){
-        seu <- cor.anno.os(seu = seu, dir_to_bulk = dir_to_bulk, unwanted.genes = unwanted.genes, clustering_alg = clustering_alg, res = res, mt.pattern = mt.pattern, cp.pattern = cp.pattern)
-        #Feature Plot
-        feature_plot_os(seu = seu, res = res, doublet.rate = doublet.rate, dir_to_color_scheme = dir_to_color_scheme, save = paste0("./",sample.name,"/feature_plot.png"))
-        #Output HTML
-        print_HTML(parameters = parameters, cell_stats = cell_stats, seq_stats = seq_stats, sample_stats = sample.stats, dir = paste0("./",sample.name), sample.name = sample.name)
-      }
-    } else {
-      # Run PCA, UMAP, Clustering
-      seu <- RunPCA(seu, verbose = FALSE, approx = FALSE, npcs = 50, features=use.genes)
-      suppressMessages(suppressWarnings(
-        seu <- RunUMAP(seu, reduction = "pca", dims = 1:50, umap.method = "umap-learn", metric = "correlation")
-      ))
-      suppressMessages(suppressWarnings(
-        seu <- FindNeighbors(seu, reduction = "pca",dims = 1:50)
-      ))
-      suppressMessages(suppressWarnings(
-        seu <- FindClusters(seu, resolution = res, algorithm = clustering_alg)
-      ))
-      #Feature Plot
-      feature_plot(seu = seu, res = res, doublet.rate = doublet.rate, save = paste0("./",sample.name,"/feature_plot.png"))
-      #Output HTML
-      print_HTML(parameters = parameters, cell_stats = cell_stats, seq_stats = seq_stats, sample_stats = sample.stats, dir = paste0("./",sample.name), sample.name = sample.name)
-    }
-
-    #Save filtered raw counts
-    if (is.null(filtered.mtx.output.dir)){
-      write10xCounts(paste0("./",sample.name,'/total_counts_filtered'), af, overwrite=T)
-      if (is.null(total.mtx)){
-        write10xCounts(paste0("./",sample.name,'/spliced_counts_filtered'), sf, overwrite=T)
-        write10xCounts(paste0("./",sample.name,'/unspliced_counts_filtered'), uf, overwrite=T)
-      }
-    } else {
-      write10xCounts(paste0(filtered.mtx.output.dir,'/spliced_counts_filtered'), af, overwrite=T)
-      if (is.null(total.mtx)){
-        write10xCounts(paste0("./",sample.name,'/spliced_counts_filtered'), sf, overwrite=T)
-        write10xCounts(paste0("./",sample.name,'/unspliced_counts_filtered'), uf, overwrite=T)
-      }
-    }
-    #Save seuart object
-
-    saveRDS(seu, file = paste0(paste0("./",sample.name,"/"),sample.name,"_COPILOT.rds"))
+    # suppressWarnings(seu <- SCTransform(seu, variable.features.n = vfn, assay = "spliced_RNA", new.assay.name = "spliced_SCT", verbose = FALSE))
+    # suppressWarnings(seu <- SCTransform(seu, variable.features.n = vfn, assay = "unspliced_RNA", new.assay.name = "unspliced_SCT", verbose = FALSE))
   }
+  DefaultAssay(seu) <- "SCT"
+
+  #store misc
+  seu@misc$percent_mt_raw <- list(pmt)
+  seu@misc$log_nCount_raw <- list(lnc_gg)
+  seu@misc$log_nFeature_raw <- list(lng_gg)
+  seu@misc$parameters <- list(parameters)
+
+
+  # Run PCA, UMAP, Clustering
+  seu <- RunPCA(seu, verbose = FALSE, approx = FALSE, npcs = 50, features=use.genes)
+  suppressMessages(suppressWarnings(
+    seu <- RunUMAP(seu, reduction = "pca", dims = 1:50, umap.method = "umap-learn", metric = "correlation")
+  ))
+  suppressMessages(suppressWarnings(
+    seu <- FindNeighbors(seu, reduction = "pca",dims = 1:50)
+  ))
+  suppressMessages(suppressWarnings(
+    seu <- FindClusters(seu, resolution = res, algorithm = clustering_alg)
+  ))
+  #Feature Plot
+  feature_plot(seu = seu, res = res, doublet.rate = doublet.rate, save = paste0("./",sample.name,"/feature_plot.png"))
+  #Output HTML
+  print_HTML(parameters = parameters, cell_stats = cell_stats, seq_stats = seq_stats, sample_stats = sample.stats, dir = paste0("./",sample.name), sample.name = sample.name)
+
+  #Save seuart object
+
+  saveRDS(seu, file = paste0(paste0("./",sample.name,"/"),sample.name,"_COPILOT.rds"))
 }
