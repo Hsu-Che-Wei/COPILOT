@@ -237,15 +237,9 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
 
   if(keep_spliced) {
       sf <- sf[,ssidx]
-  } else {
-      rm(sf)
-      gc()
   }
   if(keep_unspliced) {
     uf <- uf[,ssidx]
-  } else {
-      rm(uf)
-      gc()
   }
 
 
@@ -336,7 +330,7 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
     if(keep_unspliced){
       seu[["unspliced_RNA"]] <- CreateAssayObject(uf)
     }
-    gc()
+    message(gc())
     DefaultAssay(seu) <- "RNA"
   }
   rm(af)
@@ -353,9 +347,10 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
   } else {
     vfn <- nrow(seu)
   }
+  message("SCTransforming...")
 
   # Normalization using SCTransform
-  suppressWarnings(seu <- SCTransform(seu, variable.features.n = vfn, assay = "RNA", new.assay.name = "SCT", verbose = FALSE) )
+  suppressWarnings(seu <- SCTransform(seu, variable.features.n = vfn, assay = "RNA", new.assay.name = "SCT", verbose = T) )
   #suppressWarnings(seu <- SCTransform(seu, variable.features.n = vfn, assay = "spliced_RNA", new.assay.name = "spliced_SCT", verbose = FALSE))
   #suppressWarnings(seu <- SCTransform(seu, variable.features.n = vfn, assay = "unspliced_RNA", new.assay.name = "unspliced_SCT", verbose = FALSE))
 
