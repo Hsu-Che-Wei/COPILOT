@@ -14,6 +14,7 @@
 #' @param filtering.ratio Metric that controls the stringency of cell filtering (lenient: 1; strict:0; moderate: 0 < filtering.ratio < 1; numeric). Default is 1.
 #' @param estimate.doublet.rate Whether or not to estimate doublet rate according to 10X Genomics' estimation (boolean). Default is TRUE.
 #' @param doublet.rate User specified doublet rate (numeric). Default is NULL.
+#' @param correlation  Method of finding the correlation between cells to tell if a cell is more likely to be a low-quality cell or a high-quality one.
 #' @param remove.doublet Whether or not to remove doublets after quality filtering of gene and cell (boolean). Default is TRUE.
 #' @param do.seurat Whether or not to perform normalization, PCA, UMAP and clustering using Seurat and output a Seurat object (boolean). Default is TRUE.
 #' @param do.annotation Whether or not to do annotation (boolean). COPILOT only supports annotation on root of Arabidopsis thaliana and Oryza sativa. Default is FALSE.
@@ -35,11 +36,16 @@
 #' @import DoubletFinder
 #' @import DropletUtils
 
-copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total.mtx = NULL, filtered.mtx.output.dir = NULL, species.name = "Not Provided",
-                    transcriptome.name = "Not Provided", sample.stats = NULL, mt.pattern , mt.threshold = 5, cp.pattern = NULL, top.percent = 1,
-                    filtering.ratio = 1, estimate.doublet.rate = TRUE, doublet.rate = NULL, remove.doublet = TRUE,
-                    do.seurat = TRUE, do.annotation = FALSE, unwanted.genes = NULL, HVG = FALSE, HVGN = 200, dir_to_bulk = NULL, keep_spliced=F, keep_unspliced=F,
-                    dir_to_color_scheme = NULL, clustering_alg = 3, res = 0.5, min.UMI.low.quality = 100, min.UMI.high.quality = 300, legend.position = c(0.8,0.8)){
+copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL,
+                    total.mtx = NULL, filtered.mtx.output.dir = NULL,
+                    species.name = "Not Provided", transcriptome.name = "Not Provided",
+                    sample.stats = NULL, mt.pattern , mt.threshold = 5,
+                    cp.pattern = NULL, top.percent = 1, filtering.ratio = 1,
+                    estimate.doublet.rate = TRUE, doublet.rate = NULL, remove.doublet = TRUE,
+                    do.seurat = TRUE, do.annotation = FALSE, unwanted.genes = NULL,
+                    HVG = FALSE, HVGN = 200, dir_to_bulk = NULL, dir_to_color_scheme = NULL,
+                    clustering_alg = 3, res = 0.5, min.UMI.low.quality = 100, min.UMI.high.quality = 300,
+                    legend.position = c(0.8,0.8)){
   if (missing(sample.name)) {
     stop('Error! Necessary argument "sample.name" is missing.')
   }
@@ -54,7 +60,7 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
   library(DropletUtils)
   library(ggplot2)
   library(scales)
-  total.mtx.flag <- !is.null(total.mtx)
+
   if(is.null(spliced.mtx) && is.null(unspliced.mtx) && is.null(total.mtx)){
     # load raw mtx
     spliced <- readMM(paste0("./",sample.name,"/spliced.mtx"))
@@ -78,11 +84,9 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
     sf <- spliced[genes_use, bcs_use]
     uf <- unspliced[genes_use, bcs_use]
     afr <- sf+uf
-    rm(spliced)
-    rm(unspliced)
+    rm(spliced, unspliced)
     gc()
-  } else if (total.mtx.flag) {
-    total.mtx.flag <- T
+  } else if (!is.null(total.mtx)) {
     afr <- total.mtx
     tot_gene <- Matrix::colSums(afr)
     tot_genes <- Matrix::rowSums(afr)
@@ -106,8 +110,7 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
     sf <- spliced[genes_use, bcs_use]
     uf <- unspliced[genes_use, bcs_use]
     afr <- sf+uf
-    rm(spliced)
-    rm(unspliced)
+    rm(spliced, unspliced, spliced.mtx, unspliced.mtx)
     gc()
   }
 
@@ -145,8 +148,30 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
   np <- rowSums(nnf)/ncol(nnf) # low quality cell profile
   sp <- rowSums(naf)/ncol(naf) # high quality cell profile
 
-  cornp <- apply(naf,2,cor,y=np)
-  corsp <- apply(naf,2,cor,y=sp)
+  message("Determination of cell quality")
+
+  cl=makeCluster(cores)
+  clusterEvalQ(cl, list("naf", "np"))
+  if(correlation=="pearson"){
+    # corsp=apply(X=naf, MARGIN = 2, FUN = cor, y=sp)
+    # cornp=apply(X=naf, MARGIN = 2, FUN = cor, y=np)
+    cornp=parApply(cl=cl, X=naf, MARGIN = 2, FUN = cor, y=np)
+    corsp=parApply(cl=cl, X=naf, MARGIN = 2, FUN = cor, y=sp)
+  } else if(correlation=="spearman"){
+    cornp=parApply(cl=cl, X=naf, MARGIN = 2, FUN = cor, y=np, method="spearman")
+    corsp=parApply(cl=cl, X=naf, MARGIN = 2, FUN = cor, y=sp, method="spearman")
+  } else if (correlation=="kendall") {
+    invisible(clusterEvalQ(cl, library(pcaPP)))
+    cornp=parApply(cl=cl, X=naf, MARGIN = 2, FUN = pcaPP::cor.fk, y=np)
+    corsp=parApply(cl=cl, X=naf, MARGIN = 2, FUN = pcaPP::cor.fk, y=sp)
+  }
+  # Order after parallel computing
+  corsp <- corsp[order(factor(names(corsp), levels = names(af)))]
+  cornp <- cornp[order(factor(names(cornp), levels = names(af)))]
+  stopCluster(cl)
+
+  rm(nc, cnu, ct, local_min, dX, dYu, lin, snc, lcu, mmt, lnc.mt, filter.UMI.thres.n, filter.UMI.thres, sp, np)
+  gc()
 
   sidx <- c()
   nidx <- c()
@@ -185,9 +210,11 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
     print(paste0("iteration: ",n_iteration))
     print(paste0("removed cells: ",length(nidx)))
   }
-  sf <- sf[,colnames(af)]
-  uf <- uf[,colnames(af)]
-  gc()
+  if (is.null(total.mtx)){
+    sf <- sf[,colnames(af)]
+    uf <- uf[,colnames(af)]
+  }
+
 
   message("Iteration finished")
   #prepare data.frame for ggplot2
@@ -201,8 +228,8 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
   lncn <- log10(ncn)
   lngn <- log10(ngn)
   pmtn <- (colSums(nf[grep(paste(mt.pattern, collapse = "|"),rownames(nf)),])/ncn)*100 # percent mt for low quality cell
-  rm(nf)
-
+  rm(nf, np, sp, cornp, corsp, sidx, nidx, nnf, naf)
+  gc()
   select <- rep(paste("high quality"),length(lnc))
   label_mt <- paste0("percent mt >= ",mt.threshold)
   select[which(pmts >= mt.threshold)] <- label_mt # index of percent mt > mt.threshold
@@ -231,19 +258,27 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
                                                     paste0("low quality (",length(grep("low",select)),")"),
                                                     paste0("percent mt >= ",mt.threshold," (",length(grep("percent",select)),")"),
                                                     paste0("top ",top.percent,"% (",length(grep("top",select)),")")))
-  rm(select, nonselect)
-  gc()
-  af <- af[,ssidx]
 
-  if(keep_spliced) {
-      sf <- sf[,ssidx]
-  }
-  if(keep_unspliced) {
+  af <- af[,ssidx]
+  sf <- sf[,colnames(af)]
+  if (is.null(total.mtx)){
+    sf <- sf[,ssidx]
     uf <- uf[,ssidx]
   }
+  rm(nc, ng, select, lnc, lng, pmts, ncn, ngn, lncn, lngn, nonselect, label_mt, quantile_idx, ssidx, lncc, pmtn)
+  gc()
 
 
-  message("Quality check")
+  #kb stats
+  if (is.null(total.mtx)){
+    kb_stats <- c(fromJSON(file = paste0("./",sample.name,"/inspect.json")), fromJSON(file = paste0("./",sample.name,"/run_info.json"))) # load run info
+    tech <- tech <- strsplit(kb_stats$call, '\\s')[[1]][8]
+    seq_stats <- data.frame(stat = c('Number of Reads Processed', 'Reads Pseudoaligned', 'Reads on Whitelist', 'Total UMI Counts','Sequencing Technology', 'Species', 'Transcriptome'),
+                            value = prettyNum(c(kb_stats$n_processed, paste0(kb_stats$p_pseudoaligned, ' %'), paste0(round(kb_stats$percentageReadsOnWhitelist,2),' %'), sum(afr), tech, species.name, transcriptome.name), big.mark = ','))
+  } else {
+    seq_stats <- data.frame(stat = c('Number of Reads Processed', 'Reads Pseudoaligned', 'Reads on Whitelist', 'Total UMI Counts','Sequencing Technology', 'Species', 'Transcriptome'),
+                            value = prettyNum(c(numeric(), numeric(), numeric(), sum(afr), numeric(), species.name, transcriptome.name), big.mark = ','))
+  }
 
 
   #cell stats
@@ -282,8 +317,6 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
                              value = prettyNum(c(ncol(af), paste0(p_cnts_high,' %'), sum(af), paste0(p_cnts_in_cells,' %'), med_cnts_cell,
                                                  med_genes_cell, tot_genes_detected, paste0(p_cnts_dying,' %')), big.mark = ','))
   }
-  rm(afr)
-  gc()
 
   #parameters
   if (remove.doublet){
@@ -304,8 +337,11 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
     }
   }
 
+  rm(afr)
+  gc()
 
   message("Ploting...")
+
   #Plots
   bc_rank_plot(lnc_gg=lnc_gg, save = paste0("./",sample.name,"/bc_rank_plot.png"))
   UMI_hist_plot(lnc_gg=lnc_gg, save = paste0("./",sample.name,"/UMI_hist_plot.png"), legend.position=legend.position)
@@ -315,109 +351,163 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
     do.annotation <- FALSE
   }
 
-  message("Creating Seurat objects")
-
   #do.analysis or not
-  if (total.mtx.flag){
-    #Create Seurat Object
-    seu <- suppressWarnings(CreateSeuratObject(counts = af, assay = "RNA", project = sample.name))
+  if (!do.seurat){
+    #Output html
+    print_HTML_no_analysis(parameters = parameters, cell_stats = cell_stats, seq_stats = seq_stats, sample_stats = sample.stats, dir = paste0("./",sample.name), sample.name = sample.name)
+    #Save filtered raw counts
+    if (is.null(filtered.mtx.output.dir)){
+      write10xCounts(paste0("./",sample.name,'/total_counts_filtered'), af, overwrite=T)
+      if (is.null(total.mtx)){
+        write10xCounts(paste0("./",sample.name,'/spliced_counts_filtered'), sf, overwrite=T)
+        write10xCounts(paste0("./",sample.name,'/unspliced_counts_filtered'), uf, overwrite=T)
+      }
+    } else {
+      write10xCounts(paste0(filtered.mtx.output.dir,'/spliced_counts_filtered'), af, overwrite=T)
+      if (is.null(total.mtx)){
+        write10xCounts(paste0("./",sample.name,'/spliced_counts_filtered'), sf, overwrite=T)
+        write10xCounts(paste0("./",sample.name,'/unspliced_counts_filtered'), uf, overwrite=T)
+      }
+    }
+
   } else {
-    #Create Seurat Objects
-    seu <- suppressWarnings(CreateSeuratObject(counts = af, assay = "RNA", project = sample.name))
-    if(keep_spliced){
+    if (!is.null(total.mtx)){
+      #Create Seurat Object
+      seu <- suppressWarnings(CreateSeuratObject(counts = af, assay = "RNA", project = sample.name))
+    } else {
+      #Create Seurat Objects
+      seu <- suppressWarnings(CreateSeuratObject(counts = af, assay = "RNA", project = sample.name))
       seu[["spliced_RNA"]] <- CreateAssayObject(sf)
-    }
-    if(keep_unspliced){
       seu[["unspliced_RNA"]] <- CreateAssayObject(uf)
+      DefaultAssay(seu) <- "RNA"
     }
-    message(gc())
-    DefaultAssay(seu) <- "RNA"
-  }
-  rm(af)
-  rm(sf)
-  rm(uf)
-  gc()
 
-  seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = paste(mt.pattern, collapse = "|"))
-  seu[["percent.cp"]] <- PercentageFeatureSet(seu, pattern = paste(cp.pattern, collapse = "|"))
 
-  # Whether to apply highly variable gene selection
-  if (HVG) {
-    vfn <- HVGN
-  } else {
-    vfn <- nrow(seu)
-  }
-  message("SCTransforming...")
+    seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = paste(mt.pattern, collapse = "|"))
+    seu[["percent.cp"]] <- PercentageFeatureSet(seu, pattern = paste(cp.pattern, collapse = "|"))
 
-  # Normalization using SCTransform
-  suppressWarnings(seu <- SCTransform(seu, variable.features.n = vfn, assay = "RNA", new.assay.name = "SCT", verbose = T) )
-  #suppressWarnings(seu <- SCTransform(seu, variable.features.n = vfn, assay = "spliced_RNA", new.assay.name = "spliced_SCT", verbose = FALSE))
-  #suppressWarnings(seu <- SCTransform(seu, variable.features.n = vfn, assay = "unspliced_RNA", new.assay.name = "unspliced_SCT", verbose = FALSE))
-
-  # Doublet estimation
-  DefaultAssay(seu) <- "SCT"
-
-  if(!is.null(mt.pattern) && !is.null(cp.pattern) && !is.null(unwanted.genes)){
-    use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),grep(paste(cp.pattern, collapse = "|"),rownames(seu)),sort(match(unwanted.genes, rownames(seu))))]
-  } else if (!is.null(mt.pattern) && !is.null(cp.pattern) && is.null(unwanted.genes)){
-    use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),grep(paste(cp.pattern, collapse = "|"),rownames(seu)))]
-  } else if (!is.null(mt.pattern) && is.null(cp.pattern) && !is.null(unwanted.genes)){
-    use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),sort(match(unwanted.genes, rownames(seu))))]
-  } else if (!is.null(mt.pattern) && is.null(cp.pattern) && is.null(unwanted.genes)){
-    use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)))]
-  } else if (is.null(mt.pattern) && is.null(cp.pattern) && !is.null(unwanted.genes)){
-    use.genes <- rownames(seu)[-c(sort(match(unwanted.genes, rownames(seu))))]
-  } else if (is.null(mt.pattern) && !is.null(cp.pattern) && is.null(unwanted.genes)){
-    use.genes <- rownames(seu)[-c(grep(paste(cp.pattern, collapse = "|"),rownames(seu)))]
-  } else if (is.null(mt.pattern) && !is.null(cp.pattern) && !is.null(unwanted.genes)){
-    use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),grep(paste(cp.pattern, collapse = "|"),rownames(seu)))]
-  } else {
-    use.genes <- rownames(seu)
-  }
-
-  seu <- RunPCA(seu, verbose = FALSE, approx = FALSE, npcs = 10, features=use.genes)
-  nExp_poi <- round((doublet.rate/100)*ncol(seu))
-
-  suppressMessages(suppressWarnings(
-    seu <- doubletFinder_v3(seu, PCs = 1:10, pN = 0.25, pK = 0.15, nExp = nExp_poi, reuse.pANN = FALSE, sct = TRUE)
-  ))
-
-  # Doublet removal
-  if (remove.doublet){
-    seu <- subset(seu, cells = colnames(seu)[which(seu@meta.data[,grep("DF.classifications",colnames(seu@meta.data))]=="Singlet")])
+    # Whether to apply highly variable gene selection
+    if (HVG) {
+      vfn <- HVGN
+    } else {
+      vfn <- nrow(seu)
+    }
+    gc()
     # Normalization using SCTransform
     suppressWarnings(
       seu <- SCTransform(seu, variable.features.n = vfn, assay = "RNA", new.assay.name = "SCT", verbose = FALSE)
     )
-    # suppressWarnings(seu <- SCTransform(seu, variable.features.n = vfn, assay = "spliced_RNA", new.assay.name = "spliced_SCT", verbose = FALSE))
-    # suppressWarnings(seu <- SCTransform(seu, variable.features.n = vfn, assay = "unspliced_RNA", new.assay.name = "unspliced_SCT", verbose = FALSE))
+    #suppressWarnings(
+    #seu <- SCTransform(seu, variable.features.n = vfn, assay = "spliced_RNA", new.assay.name = "spliced_SCT", verbose = FALSE)
+    #)
+    #suppressWarnings(
+    #seu <- SCTransform(seu, variable.features.n = vfn, assay = "unspliced_RNA", new.assay.name = "unspliced_SCT", verbose = FALSE)
+    #)
+
+    # Doublet estimation
+    DefaultAssay(seu) <- "SCT"
+
+    if(!is.null(mt.pattern) && !is.null(cp.pattern) && !is.null(unwanted.genes)){
+      use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),grep(paste(cp.pattern, collapse = "|"),rownames(seu)),sort(match(unwanted.genes, rownames(seu))))]
+    } else if (!is.null(mt.pattern) && !is.null(cp.pattern) && is.null(unwanted.genes)){
+      use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),grep(paste(cp.pattern, collapse = "|"),rownames(seu)))]
+    } else if (!is.null(mt.pattern) && is.null(cp.pattern) && !is.null(unwanted.genes)){
+      use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),sort(match(unwanted.genes, rownames(seu))))]
+    } else if (!is.null(mt.pattern) && is.null(cp.pattern) && is.null(unwanted.genes)){
+      use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)))]
+    } else if (is.null(mt.pattern) && is.null(cp.pattern) && !is.null(unwanted.genes)){
+      use.genes <- rownames(seu)[-c(sort(match(unwanted.genes, rownames(seu))))]
+    } else if (is.null(mt.pattern) && !is.null(cp.pattern) && is.null(unwanted.genes)){
+      use.genes <- rownames(seu)[-c(grep(paste(cp.pattern, collapse = "|"),rownames(seu)))]
+    } else if (is.null(mt.pattern) && !is.null(cp.pattern) && !is.null(unwanted.genes)){
+      use.genes <- rownames(seu)[-c(grep(paste(mt.pattern, collapse = "|"),rownames(seu)),grep(paste(cp.pattern, collapse = "|"),rownames(seu)))]
+    } else {
+      use.genes <- rownames(seu)
+    }
+
+    seu <- RunPCA(seu, verbose = FALSE, approx = FALSE, npcs = 10, features=use.genes)
+    nExp_poi <- round((doublet.rate/100)*ncol(seu))
+
+    suppressMessages(suppressWarnings(
+      seu <- doubletFinder_v3(seu, PCs = 1:10, pN = 0.25, pK = 0.15, nExp = nExp_poi, reuse.pANN = FALSE, sct = TRUE)
+    ))
+
+    # Doublet removal
+    if (remove.doublet){
+      seu <- subset(seu, cells = colnames(seu)[which(seu@meta.data[,grep("DF.classifications",colnames(seu@meta.data))]=="Singlet")])
+      # Normalization using SCTransform
+      suppressWarnings(
+        seu <- SCTransform(seu, variable.features.n = vfn, assay = "RNA", new.assay.name = "SCT", verbose = FALSE)
+      )
+      suppressWarnings(
+        seu <- SCTransform(seu, variable.features.n = vfn, assay = "spliced_RNA", new.assay.name = "spliced_SCT", verbose = FALSE)
+      )
+      suppressWarnings(
+        seu <- SCTransform(seu, variable.features.n = vfn, assay = "unspliced_RNA", new.assay.name = "unspliced_SCT", verbose = FALSE)
+      )
+    }
+    DefaultAssay(seu) <- "SCT"
+
+    #store misc
+    seu@misc$percent_mt_raw <- list(pmt)
+    seu@misc$log_nCount_raw <- list(lnc_gg)
+    seu@misc$log_nFeature_raw <- list(lng_gg)
+    seu@misc$parameters <- list(parameters)
+    #seu@misc$seq_stats <- list(seq_stats)
+    #seu@misc$cell_stats <- list(cell_stats)
+    #if (!is.null(sample.stats)){
+    #  seu@misc$sample_stats <- list(sample.stats)
+    #}
+
+    if (do.annotation){
+      #Annotation whole transcriptome correlation
+      if (species.name=="Arabidopsis thaliana"){
+        seu <- cor.anno.at(seu = seu, dir_to_bulk = dir_to_bulk, unwanted.genes = unwanted.genes, clustering_alg = clustering_alg, res = res, mt.pattern = mt.pattern, cp.pattern = cp.pattern)
+        #Feature Plot
+        feature_plot_at(seu = seu, res = res, doublet.rate = doublet.rate, dir_to_color_scheme = dir_to_color_scheme, save = paste0("./",sample.name,"/feature_plot.png"))
+        #Output HTML
+        print_HTML(parameters = parameters, cell_stats = cell_stats, seq_stats = seq_stats, sample_stats = sample.stats, dir = paste0("./",sample.name), sample.name = sample.name)
+      } else if (species.name=="Oryza sativa"){
+        seu <- cor.anno.os(seu = seu, dir_to_bulk = dir_to_bulk, unwanted.genes = unwanted.genes, clustering_alg = clustering_alg, res = res, mt.pattern = mt.pattern, cp.pattern = cp.pattern)
+        #Feature Plot
+        feature_plot_os(seu = seu, res = res, doublet.rate = doublet.rate, dir_to_color_scheme = dir_to_color_scheme, save = paste0("./",sample.name,"/feature_plot.png"))
+        #Output HTML
+        print_HTML(parameters = parameters, cell_stats = cell_stats, seq_stats = seq_stats, sample_stats = sample.stats, dir = paste0("./",sample.name), sample.name = sample.name)
+      }
+    } else {
+      # Run PCA, UMAP, Clustering
+      seu <- RunPCA(seu, verbose = FALSE, approx = FALSE, npcs = 50, features=use.genes)
+      suppressMessages(suppressWarnings(
+        seu <- RunUMAP(seu, reduction = "pca", dims = 1:50, umap.method = "umap-learn", metric = "correlation")
+      ))
+      suppressMessages(suppressWarnings(
+        seu <- FindNeighbors(seu, reduction = "pca",dims = 1:50)
+      ))
+      suppressMessages(suppressWarnings(
+        seu <- FindClusters(seu, resolution = res, algorithm = clustering_alg)
+      ))
+      #Feature Plot
+      feature_plot(seu = seu, res = res, doublet.rate = doublet.rate, save = paste0("./",sample.name,"/feature_plot.png"))
+      #Output HTML
+      print_HTML(parameters = parameters, cell_stats = cell_stats, seq_stats = seq_stats, sample_stats = sample.stats, dir = paste0("./",sample.name), sample.name = sample.name)
+    }
+
+    #Save filtered raw counts
+    if (is.null(filtered.mtx.output.dir)){
+      write10xCounts(paste0("./",sample.name,'/total_counts_filtered'), af, overwrite=T)
+      if (is.null(total.mtx)){
+        write10xCounts(paste0("./",sample.name,'/spliced_counts_filtered'), sf, overwrite=T)
+        write10xCounts(paste0("./",sample.name,'/unspliced_counts_filtered'), uf, overwrite=T)
+      }
+    } else {
+      write10xCounts(paste0(filtered.mtx.output.dir,'/spliced_counts_filtered'), af, overwrite=T)
+      if (is.null(total.mtx)){
+        write10xCounts(paste0("./",sample.name,'/spliced_counts_filtered'), sf, overwrite=T)
+        write10xCounts(paste0("./",sample.name,'/unspliced_counts_filtered'), uf, overwrite=T)
+      }
+    }
+    #Save seuart object
+
+    saveRDS(seu, file = paste0(paste0("./",sample.name,"/"),sample.name,"_COPILOT.rds"))
   }
-  DefaultAssay(seu) <- "SCT"
-
-  #store misc
-  seu@misc$percent_mt_raw <- list(pmt)
-  seu@misc$log_nCount_raw <- list(lnc_gg)
-  seu@misc$log_nFeature_raw <- list(lng_gg)
-  seu@misc$parameters <- list(parameters)
-
-
-  # Run PCA, UMAP, Clustering
-  seu <- RunPCA(seu, verbose = FALSE, approx = FALSE, npcs = 50, features=use.genes)
-  suppressMessages(suppressWarnings(
-    seu <- RunUMAP(seu, reduction = "pca", dims = 1:50, umap.method = "umap-learn", metric = "correlation")
-  ))
-  suppressMessages(suppressWarnings(
-    seu <- FindNeighbors(seu, reduction = "pca",dims = 1:50)
-  ))
-  suppressMessages(suppressWarnings(
-    seu <- FindClusters(seu, resolution = res, algorithm = clustering_alg)
-  ))
-  #Feature Plot
-  feature_plot(seu = seu, res = res, doublet.rate = doublet.rate, save = paste0("./",sample.name,"/feature_plot.png"))
-  #Output HTML
-  print_HTML(parameters = parameters, cell_stats = cell_stats, seq_stats = seq_stats, sample_stats = sample.stats, dir = paste0("./",sample.name), sample.name = sample.name)
-
-  #Save seuart object
-
-  saveRDS(seu, file = paste0(paste0("./",sample.name,"/"),sample.name,"_COPILOT.rds"))
 }
