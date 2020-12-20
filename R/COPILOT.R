@@ -4,6 +4,7 @@
 #' @param unspliced.mtx Gene by cell matrix of unspliced counts, which should have column and row names. Default is NULL.
 #' @param total.mtx Gene by cell matrix of total counts, which should have column and row names. Default is NULL.
 #' @param filtered.mtx.output.dir Output directory for quality filtered matrices. Default is NULL.
+#' @param cores Number of CPU cores to speed up correlation computing.
 #' @param species.name Species name (character). Default is "Not Provided".
 #' @param transcriptome.name Name of transcriptome annotation file. (e.g. TAIR10 for Arabidopsis). Default is "Not Provided".
 #' @param sample.stats Meta data of the sample in data.frame format. Default is NULL.
@@ -37,7 +38,7 @@
 #' @import DropletUtils
 
 copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL,
-                    total.mtx = NULL, filtered.mtx.output.dir = NULL,
+                    total.mtx = NULL, filtered.mtx.output.dir = NULL, cores=1,
                     species.name = "Not Provided", transcriptome.name = "Not Provided",
                     sample.stats = NULL, mt.pattern , mt.threshold = 5,
                     cp.pattern = NULL, top.percent = 1, filtering.ratio = 1,
