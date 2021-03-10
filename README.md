@@ -43,6 +43,8 @@ docker exec -it ${image ID} bash
 
 #In the container, activate conda environment copilot
 conda activate copilot
+
+#Then you can run copilot in R!
    ```
 
 ## Tutorial
