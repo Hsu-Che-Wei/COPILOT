@@ -10,7 +10,7 @@ Shahan & Hsu et al. 2020. A single cell _Arabidopsis_ root atlas reveals develop
 
 1. Since scKB and COPILOT incorporates kallisto, which is a read aligner using peudoalignment, they are about ~ 30 times faster than CellRanger 3.1 in processing time. 
 
-2. If user wants to calculate RNA velocity or infer trajectory based on splicing dynamics in downstream analysis, then COPILOT along with scKB can help you since together they produce spliced and unspliced quality-filtered count matrices. 
+2. If user wants to calculate RNA velocity or infer trajectory based on splicing dynamics in downstream analysis, then COPILOT along with scKB are the right choice, since together they produce spliced and unspliced quality-filtered count matrices. 
 
 3. If user wants to use specific sets of genes that represent the signal of noise or low quality cells for cell-filtering, COPILOT offers such function.
 
