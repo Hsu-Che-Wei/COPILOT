@@ -26,6 +26,20 @@ Python modules: umap-learn, leidenalg (optional)
    ```
 devtools::install_github('Hsu-Che-Wei/COPILOT')
    ```
+   
+## Docker Image
+   ```
+#Pull image from docker hub   
+docker pull cheweihsu/copilot:latest
+#Run image
+docker run -it -d cheweihsu/copilot:latest
+#Check running image ID
+docker ps -a
+#Execute the container
+docker exec -it ${image ID} bash
+#In the container, activate conda environment copilot
+conda activate copilot
+   ```
 
 ## Tutorial
 
