@@ -38,10 +38,10 @@ docker run -it -d cheweihsu/copilot:latest
 #Check running image ID
 docker ps -a
 
-#Execute the container
+#Enter the container
 docker exec -it ${image ID} bash
 
-#In the container, activate conda environment copilot
+#In the container, activate conda environment "copilot"
 conda activate copilot
 
 #Then you can run copilot in R!
