@@ -39,7 +39,7 @@ docker run -it -d cheweihsu/copilot:latest
 docker ps -a
 
 #Enter the container
-docker exec -it ${image ID} bash
+docker exec -it {image ID} bash
 
 #In the container, activate conda environment "copilot"
 conda activate copilot
