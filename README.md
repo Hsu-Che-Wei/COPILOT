@@ -20,7 +20,7 @@ R (>= 3.6.1)
 
 R packages: Seurat (>= 3.1.4), Matrix, scales, rjson, gridExtra, ggplot2, DoubletFinder, DropletUtils, R2HTML
 
-Python modules: umap-learn, leidenalg (optional)
+Python modules: umap-learn (required), leidenalg (optional)
 
 ## Installation (in R/RStudio)
    ```
