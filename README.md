@@ -113,35 +113,39 @@ One can find here codes demonstrating how some typical downstream analysis of sc
 
 [2-Integration](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/2-Integration.ipynb)
 
-[3-1-Prepare_Escoring_Input](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/3-1-Prepare_Escoring_Input.ipynb)
+[3-1-novoSpaRc](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/3-1-novoSpaRc.ipynb)
 
-[3-2-Prepare_Escoring_Input_2](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/3-2-Prepare_Escoring_Input_2.ipynb)
+[3-2-novoSpaRc_to_Atlas](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/3-2-novoSpaRc_to_Atlas.ipynb)
 
-[3-3-Find_Markers_By_Escoring](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/3-3-Find_Markers_By_Escoring.ipynb)
+[4-1-Prepare_SEMITONES_Input](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/4-1-Prepare_SEMITONES_Input.ipynb)
 
-[3-4-Marker_Annotation_By_Escoring](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/3-4-Marker_Annotation_By_Escoring.ipynb)
+[4-2-Prepare_SEMITONES_Input_2](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/4-2-Prepare_SEMITONES_Input_2.ipynb)
 
-[4-ICI_Computaion](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/4-ICI_Computaion.ipynb)
+[4-3-Marker_Annotation_By_SEMITONES](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/4-3-Marker_Annotation_By_SEMITONES.ipynb)
 
-[5-CytoTRACE](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/5-CytoTRACE.ipynb)
+[5-ICI_Computation](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/5-ICI_Computation.ipynb)
 
-[6-Finalize_Annotation](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/6-Finalize_Annotation.ipynb)
+[6-CytoTRACE](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/6-CytoTRACE.ipynb)
 
-[7-Extract_Tissue_Lineage](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/7-Extract_Tissue_Lineage.ipynb)
+[7-Combine_and_Finalize_Annotation](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/7-Combine_and_Finalize_Annotation.ipynb)
 
-[8-scVelo_Latent_Time](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/8-scVelo_Latent_Time.ipynb)
+[8-Extract_Tissue_Lineage](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/8-Extract_Tissue_Lineage.ipynb)
 
-[9-Consensus_Time](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/9-Consensus_Time.ipynb)
+[9-scVelo_Latent_Time](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/9-scVelo_Latent_Time.ipynb)
 
-[10-Label_Transfer](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/10-Label_Transfer.ipynb)
+[10-Consensus_Time](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/10-Consensus_Time.ipynb)
 
-[11-1-Atlas_FindMarkers](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/11-1-Atlas_FindMarkers.ipynb)
+[11_Label_Transfer](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/11_Label_Transfer.ipynb)
 
-[11-2-Endo_Cortex_Heatmap](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/11-2-Endo_Cortex_Heatmap.ipynb)
+[12-1-Atlas_FindMarkers](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/12-1-Atlas_FindMarkers.ipynb)
 
-[11-3-WT_SCR_SHR_Heatmap](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/11-3-WT_SCR_SHR_Heatmap.ipynb)
+[12-2-Endo_Cortex_Heatmap](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/12-2-Endo_Cortex_Heatmap.ipynb)
 
-[12-Differential_Abundance_Analysis](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/12-Differential_Abundance_Analysis.ipynb)
+[12-3-WT_SCR_SHR_Heatmap](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/12-3-WT_SCR_SHR_Heatmap.ipynb)
+
+[13-Differential_Abundance_Analysis](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/13-Differential_Abundance_Analysis.ipynb)
+
+[14-Ploidy_Annotation](https://github.com/Hsu-Che-Wei/COPILOT/tree/master/jupyter_notebook/14-Ploidy_Annotation.ipynb)
 
 
 
