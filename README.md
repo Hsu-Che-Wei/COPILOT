@@ -4,7 +4,8 @@ Single cell RNA-seq preprocessing tool for gene-by-cell matrices of UMI counts. 
 
 ## Citation
 
-Shahan & Hsu et al. 2020. A single cell _Arabidopsis_ root atlas reveals developmental trajectories in wild type and cell identity mutants. bioRxiv. doi: https://doi.org/10.1101/2020.06.29.178863
+Shahan, R., Hsu, C.-W., Nolan, T.M., Cole, B.J., Taylor, I.W., Greenstreet, L., Zhang, S., Afanassiev, A., Vlot, A.H.C., Schiebinger, G., Benfey, P.N., Ohler, U., 2022. A single-cell Arabidopsis root atlas reveals developmental trajectories in wild-type and cell identity mutants. Developmental Cell S1534580722000338. https://doi.org/10.1016/j.devcel.2022.01.008
+
 
 ## Advantages over CellRanger 3.1
 
