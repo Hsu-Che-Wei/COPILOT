@@ -7,13 +7,13 @@
 #' @import Seurat
 #' @import ggplot2
 #' @import scales
-#' @import gridExtra
+#' @import egg
 
 feature_plot_os <- function(seu,res,doublet.rate,dir_to_color_scheme,save){
   library(Seurat)
   library(ggplot2)
   library(scales)
-  library(gridExtra)
+  library(egg)
   load(dir_to_color_scheme)
   color <- celltypepalette[sort(match(unique(seu$celltype.plate.ID.P),celltypeorder))];
   p1 <- DimPlot(seu, reduction = "umap", group.by = "celltype.plate.ID.P", cols = color)+ggtitle("TRAP Seq Annotation")+theme(plot.margin = unit(c(2.4,0,0.8,4), "cm"),plot.title = element_text(hjust = 0,vjust=2,size= 22, face="plain"));
@@ -33,7 +33,8 @@ feature_plot_os <- function(seu,res,doublet.rate,dir_to_color_scheme,save){
 
   png(save, width = 22, height = 32, units = 'in', res=300)
   print(
-    gridExtra::grid.arrange(grobs=gl, ncol=2)
+    #gridExtra::grid.arrange(grobs=gl, ncol=2)
+    ggarrange(gl, ncol=2)
   )
   dev.off()
 }
