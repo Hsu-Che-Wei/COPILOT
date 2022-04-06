@@ -28,7 +28,7 @@ feature_plot_os <- function(seu,res,doublet.rate,dir_to_color_scheme,save){
   p7 <- DimPlot(seu, reduction = "umap", group.by = colnames(seu@meta.data)[grep("DF.classifications",colnames(seu@meta.data))], order = c("Doublet","Singlet"),cols = c("#cccccc", "#ff4040"))+ggtitle(paste0("Doublet Rate ",doublet.rate," %"))+theme(plot.margin = unit(c(2.4,0,0.8,4), "cm"),plot.title = element_text(hjust = 0,vjust=2,size= 22, face="plain"));
   p8 <- DimPlot(seu, reduction = "umap", label = TRUE)+ggtitle(paste0("Clustering (resolution ",res,")"))+theme(legend.position="none",plot.margin = unit(c(2.4,0,0.8,0), "cm"),plot.title = element_text(hjust = 0,vjust=2,size= 22, face="plain"));
   gl <- lapply(list(p1, p2, p3, p4, p5, p6, p7, p8), ggplotGrob)
-  gwidth <- do.call(unit.pmax, lapply(gl, "[[", "widths"))
+  gwidth <- do.call(grid::unit.pmax, lapply(gl, "[[", "widths"))
   gl <- lapply(gl, "[[<-", "widths", value = gwidth)
 
   png(save, width = 22, height = 32, units = 'in', res=300)
