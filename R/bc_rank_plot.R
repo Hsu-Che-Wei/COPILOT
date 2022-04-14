@@ -18,7 +18,7 @@ bc_rank_plot <- function(lnc_gg,save){
       scale_color_manual(values = c("#003B6D","#EBEDF3","#d96459","#f2e394"), name = NULL, guide = guide_legend(reverse = TRUE)) +
       scale_alpha_manual(values = c(0.8,0.8,0.8,0.8)) +
       labs(x = 'Barcodes', y = 'UMI Counts') +
-      guides(alpha = FALSE, colour = guide_legend(reverse = TRUE, override.aes=list(size = 5))) +
+      guides(alpha = "none", colour = guide_legend(reverse = TRUE, override.aes=list(size = 5))) +
       theme_bw() +
       theme(panel.border = element_blank(), panel.grid.major = element_blank(),
             panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
