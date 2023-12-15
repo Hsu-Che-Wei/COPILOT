@@ -173,8 +173,10 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
     print(paste0("iteration: ",n_iteration))
     print(paste0("removed cells: ",length(nidx)))
   }
-  sf <- sf[,colnames(af)]
-  uf <- uf[,colnames(af)]
+  if (is.null(total.mtx)){
+    sf <- sf[,colnames(af)]
+    uf <- uf[,colnames(af)]
+  }
 
   message("Iteration finished")
   #prepare data.frame for ggplot2
@@ -219,8 +221,10 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
                                                     paste0("top ",top.percent,"% (",length(grep("top",select)),")")))
 
   af <- af[,ssidx]
-  sf <- sf[,ssidx]
-  uf <- uf[,ssidx]
+  if (is.null(total.mtx)){
+      sf <- sf[,ssidx]
+      uf <- uf[,ssidx]
+  }
 
 
   #kb stats
