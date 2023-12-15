@@ -235,7 +235,7 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
                             value = prettyNum(c(kb_stats$n_processed, paste0(kb_stats$p_pseudoaligned, ' %'), paste0(round(kb_stats$percentageReadsOnWhitelist,2),' %'), sum(afr), tech, species.name, transcriptome.name), big.mark = ','))
   } else {
     seq_stats <- data.frame(stat = c('Number of Reads Processed', 'Reads Pseudoaligned', 'Reads on Whitelist', 'Total UMI Counts','Sequencing Technology', 'Species', 'Transcriptome'),
-                            value = prettyNum(c(numeric(), numeric(), numeric(), sum(afr), numeric(), species.name, transcriptome.name), big.mark = ','))
+                            value = prettyNum(c(numeric(NA), numeric(NA), numeric(NA), sum(afr), numeric(NA), species.name, transcriptome.name), big.mark = ','))
   }
 
 
