@@ -233,18 +233,18 @@ copilot <- function(sample.name, spliced.mtx = NULL, unspliced.mtx = NULL, total
     tech <- tech <- strsplit(kb_stats$call, '\\s')[[1]][8]
     seq_stats <- data.frame(stat = c('Number of Reads Processed', 'Reads Pseudoaligned', 'Reads on Whitelist', 'Total UMI Counts','Sequencing Technology', 'Species', 'Transcriptome'),
                             value = prettyNum(c(kb_stats$n_processed, paste0(kb_stats$p_pseudoaligned, ' %'), paste0(round(kb_stats$percentageReadsOnWhitelist,2),' %'), sum(afr), tech, species.name, transcriptome.name), big.mark = ','))
-  } else if ((!is.null(species.name)) & (!is.null(transcriptome.name))){
+  } else if (!is.null(species.name) && !is.null(transcriptome.name)){
     seq_stats <- data.frame(stat = c('Number of Reads Processed', 'Reads Pseudoaligned', 'Reads on Whitelist', 'Total UMI Counts','Sequencing Technology', 'Species', 'Transcriptome'),
-                            value = prettyNum(c(NA, NA, NA, sum(afr), NA, species.name, transcriptome.name), big.mark = ','))
-  } else if ((!is.null(species.name)) & (is.null(transcriptome.name))){
+                            value = c(NA, NA, NA, sum(afr), NA, species.name, transcriptome.name))
+  } else if (!is.null(species.name) && is.null(transcriptome.name)){
     seq_stats <- data.frame(stat = c('Number of Reads Processed', 'Reads Pseudoaligned', 'Reads on Whitelist', 'Total UMI Counts','Sequencing Technology', 'Species', 'Transcriptome'),
-                            value = prettyNum(c(NA, NA, NA, sum(afr), NA, species.name, NA), big.mark = ','))
-  } else if ((is.null(species.name)) & (!is.null(transcriptome.name))){
+                            value = c(NA, NA, NA, sum(afr), NA, species.name, NA))
+  } else if (is.null(species.name) && !is.null(transcriptome.name)){
     seq_stats <- data.frame(stat = c('Number of Reads Processed', 'Reads Pseudoaligned', 'Reads on Whitelist', 'Total UMI Counts','Sequencing Technology', 'Species', 'Transcriptome'),
-                            value = prettyNum(c(NA, NA, NA, sum(afr), NA, NA, transcriptome.name), big.mark = ','))
+                            value = c(NA, NA, NA, sum(afr), NA, NA, transcriptome.name))
   } else {
     seq_stats <- data.frame(stat = c('Number of Reads Processed', 'Reads Pseudoaligned', 'Reads on Whitelist', 'Total UMI Counts','Sequencing Technology', 'Species', 'Transcriptome'),
-                            value = prettyNum(c(NA, NA, NA, sum(afr), NA, NA, NA), big.mark = ','))
+                            value = c(NA, NA, NA, sum(afr), NA, NA, NA))
   }
 
 
