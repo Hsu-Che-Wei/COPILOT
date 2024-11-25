@@ -6,6 +6,8 @@ Single cell RNA-seq preprocessing tool for gene-by-cell matrices of UMI counts. 
 
 Shahan, R., Hsu, C.-W., Nolan, T.M., Cole, B.J., Taylor, I.W., Greenstreet, L., Zhang, S., Afanassiev, A., Vlot, A.H.C., Schiebinger, G., Benfey, P.N., Ohler, U., 2022. A single-cell Arabidopsis root atlas reveals developmental trajectories in wild-type and cell identity mutants. Developmental Cell S1534580722000338. https://doi.org/10.1016/j.devcel.2022.01.008
 
+Hsu CW, Shahan R, Nolan TM, Benfey PN, Ohler U. Protocol for fast scRNA-seq raw data processing using scKB and non-arbitrary quality control with COPILOT. STAR Protoc. 2022 Dec 16;3(4):101729. doi: 10.1016/j.xpro.2022.101729. Epub 2022 Sep 30. PMID: 36181683; PMCID: PMC9530667.
+
 
 ## Advantages over CellRanger 3.1
 
