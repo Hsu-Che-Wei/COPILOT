@@ -6,7 +6,7 @@ The easiest way to run COPILOT (unfiltered matrix -> filtered matrix) now is to 
 
 ---
 
-Single cell RNA-seq preprocessing tool for gene-by-cell matrices of UMI counts. The uitily and summary file offered by this tool is directly comparable to CellRanger 3.1, the tool developed by 10X Genomics. It is recommended to use the raw spliced and unpliced counts matrices produced by scKB pipeline as the input of COPILOT.
+Single cell RNA-seq preprocessing tool for gene-by-cell matrices of UMI counts. The utility and summary file offered by this tool is directly comparable to CellRanger 3.1, the tool developed by 10X Genomics. It is recommended to use the raw spliced and unpliced counts matrices produced by scKB pipeline as the input of COPILOT.
 
 ## Citation
 
