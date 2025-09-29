@@ -1,6 +1,6 @@
 # COPILOT (Cell preprOcessing PIpeline kaLlistO busTools) 
 
- 🚨 **Update!! (Sept 2025):** 
+ 🚨 **Update!! (September 2025):** 
  
 The easiest way to run COPILOT (unfiltered matrix -> filtered matrix) now is to follow the notebook in the folder [COPILOT_2025_update](./COPILOT_2025_update).
 
